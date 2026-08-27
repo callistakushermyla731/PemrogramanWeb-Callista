@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Buku - Sistem Perpustakaan</title>
+</head>
+<body>
+    <header>
+        <h1>Sistem Informasi Perpustakaan</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Beranda</a></li>
+                <li><a href="list.html">Daftar Buku</a></li>
+                <li><a href="tambah.html">Tambah Buku</a></li>
+                <li><a href="../anggota/list.html">Daftar Anggota</a></li>
+                <li><a href="../anggota/tambah.html">Tambah Anggota</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="form-tambah-buku">
+            <h2>Formulir Tambah Buku</h2>
+            <form action="#" method="post">
+                <p>
+                    <label for="kode_buku">Kode Buku:</label><br>
+                    <input type="text" id="kode_buku" name="kode_buku" required>
+                </p>
+                <p>
+                    <label for="judul">Judul Buku:</label><br>
+                    <input type="text" id="judul" name="judul" required>
+                </p>
+                <p>
+                    <label for="pengarang">Pengarang:</label><br>
+                    <input type="text" id="pengarang" name="pengarang" required>
+                </p>
+                <p>
+                    <label for="tahun_terbit">Tahun Terbit:</label><br>
+                    <input type="number" id="tahun_terbit" name="tahun_terbit" min="1900" max="2099" required>
+                </p>
+                <p>
+                    <button type="submit" id="btn-simpan" name="simpan">Simpan</button>
+                    <button type="reset" id="btn-reset" name="reset">Batal</button>
+                </p>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Sistem Informasi Perpustakaan. All rights reserved.</p>
+    </footer>
+</body>
+</html>
