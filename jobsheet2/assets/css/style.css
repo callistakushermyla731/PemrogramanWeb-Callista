@@ -62,15 +62,15 @@ h2 {
     padding-bottom: 8px;
 }
 
-/* CSS Grid 3 Kolom Kartu Statistik Beranda */
-section#ringkasan-statistik {
+/* CSS Grid 3 Kolom Kartu Statistik */
+.card-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     margin-top: 15px;
 }
 
-section#ringkasan-statistik article {
+.card-container article {
     background-color: #eef2f5;
     padding: 20px;
     border-radius: 6px;
@@ -78,13 +78,13 @@ section#ringkasan-statistik article {
     text-align: center;
 }
 
-section#ringkasan-statistik article h3 {
+.card-container article h3 {
     font-size: 1.1rem;
     color: #555;
     margin-bottom: 10px;
 }
 
-section#ringkasan-statistik article p {
+.card-container article p {
     font-size: 1.4rem;
     color: #2c3e50;
 }
