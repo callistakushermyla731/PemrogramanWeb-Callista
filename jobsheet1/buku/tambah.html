@@ -15,6 +15,7 @@
                 <li><a href="tambah.html">Tambah Buku</a></li>
                 <li><a href="../anggota/list.html">Daftar Anggota</a></li>
                 <li><a href="../anggota/tambah.html">Tambah Anggota</a></li>
+                <li><a href="../login.html">Login</a></li>
             </ul>
         </nav>
     </header>
@@ -38,6 +39,24 @@
                 <p>
                     <label for="tahun_terbit">Tahun Terbit:</label><br>
                     <input type="number" id="tahun_terbit" name="tahun_terbit" min="1900" max="2099" required>
+                </p>
+                <p>
+                    <label for="isbn">ISBN:</label><br>
+                    <input type="text" id="isbn" name="isbn" required>
+                </p>
+                <p>
+                    <label for="stok">Stok:</label><br>
+                    <input type="number" id="stok" name="stok" min="0" required>
+                </p>
+                <p>
+                    <label for="kategori">Kategori:</label><br>
+                    <select id="kategori" name="kategori" required>
+                        <option value="">-- Pilih Kategori --</option>
+                        <option value="Pemrograman">Pemrograman</option>
+                        <option value="Database">Database</option>
+                        <option value="Jaringan">Jaringan</option>
+                        <option value="Algoritma">Algoritma</option>
+                    </select>
                 </p>
                 <p>
                     <button type="submit" id="btn-simpan" name="simpan">Simpan</button>
