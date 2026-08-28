@@ -150,13 +150,15 @@ form label {
 }
 
 form input,
-form select {
+form select,
+form textarea {
     width: 100%;
     max-width: 400px;
     padding: 0.55rem 0.7rem;
     border: 1px solid #cdd4da;
     border-radius: 4px;
     font-size: 1rem;
+    font-family: inherit;
 }
 
 form button[type="submit"] {
