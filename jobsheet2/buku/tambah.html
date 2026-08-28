@@ -16,6 +16,7 @@
                 <li><a href="tambah.html">Tambah Buku</a></li>
                 <li><a href="../anggota/list.html">Daftar Anggota</a></li>
                 <li><a href="../anggota/tambah.html">Tambah Anggota</a></li>
+                <li><a href="../login.html">Login</a></li>
             </ul>
         </nav>
     </header>
@@ -25,20 +26,38 @@
             <h2>Formulir Tambah Buku</h2>
             <form action="#" method="post">
                 <p>
-                    <label for="kode_buku">Kode Buku:</label><br>
+                    <label for="kode_buku">Kode Buku:</label>
                     <input type="text" id="kode_buku" name="kode_buku" required>
                 </p>
                 <p>
-                    <label for="judul">Judul Buku:</label><br>
+                    <label for="judul">Judul Buku:</label>
                     <input type="text" id="judul" name="judul" required>
                 </p>
                 <p>
-                    <label for="pengarang">Pengarang:</label><br>
+                    <label for="pengarang">Pengarang:</label>
                     <input type="text" id="pengarang" name="pengarang" required>
                 </p>
                 <p>
-                    <label for="tahun_terbit">Tahun Terbit:</label><br>
+                    <label for="tahun_terbit">Tahun Terbit:</label>
                     <input type="number" id="tahun_terbit" name="tahun_terbit" min="1900" max="2099" required>
+                </p>
+                <p>
+                    <label for="isbn">ISBN:</label>
+                    <input type="text" id="isbn" name="isbn" required>
+                </p>
+                <p>
+                    <label for="stok">Stok:</label>
+                    <input type="number" id="stok" name="stok" min="0" required>
+                </p>
+                <p>
+                    <label for="kategori">Kategori:</label>
+                    <select id="kategori" name="kategori" required>
+                        <option value="">-- Pilih Kategori --</option>
+                        <option value="Pemrograman">Pemrograman</option>
+                        <option value="Database">Database</option>
+                        <option value="Jaringan">Jaringan</option>
+                        <option value="Algoritma">Algoritma</option>
+                    </select>
                 </p>
                 <p>
                     <button type="submit" id="btn-simpan" name="simpan">Simpan</button>
