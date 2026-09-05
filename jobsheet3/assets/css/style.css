@@ -150,7 +150,6 @@ td button {
     border-radius: 4px;
     cursor: pointer;
     font-size: 0.85rem;
-    
     color: #fff;
     white-space: nowrap;
 }
@@ -208,17 +207,15 @@ footer {
 /* ===== Media Queries untuk Layar HP (Responsive Hamburger) ===== */
 @media (max-width: 600px) {
     .hamburger {
-        display: block; /* Tampilkan ikon hamburger di HP */
+        display: block;
     }
 
     header nav {
-       
         width: 100%;
-        
     }
 
     header nav ul {
-        display: none; /* Sembunyikan menu secara default di HP */
+        display: none;
         flex-direction: column;
         gap: 0.5rem;
         width: 100%;
@@ -227,7 +224,6 @@ footer {
         border-top: 1px solid rgba(255, 255, 255, 0.3);
     }
 
-    /* Class untuk menampilkan menu ketika hamburger diklik */
     header nav ul.active {
         display: flex;
     }
