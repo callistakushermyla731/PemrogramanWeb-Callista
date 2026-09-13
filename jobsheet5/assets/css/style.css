@@ -1,4 +1,4 @@
-/* ===== Override Brand Color SIMPUS-Mini (Pink) ===== */
+/* ===== Override Warna Brand SIMPUS-Mini (Pink) ===== */
 .navbar-brand,
 .nav-link {
     color: #fff !important;
@@ -14,11 +14,23 @@ button[type="submit"]:hover {
     background-color: #c2185b !important;
 }
 
-/* Pesan Error Validasi dari JS Dosen */
+/* 2. Animasi transisi menu navigasi (slide/geser halus) */
+header nav.collapse,
+header nav {
+    transition: max-height 0.35s ease-in-out, opacity 0.35s ease-in-out;
+}
+
+/* Pesan Error Validasi JS */
 .error {
     display: block;
     color: #d9534f;
     font-size: 0.85rem;
     margin-top: 0.25rem;
+    font-weight: 500;
+}
+
+/* Styling Counter Baris Tabel */
+#table-counter {
+    font-size: 0.875rem;
     font-weight: 500;
 }
