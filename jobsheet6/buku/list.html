@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
+    <!-- Navigasi -->
     <header class="navbar navbar-expand-lg navbar-dark" style="background-color:#d63384;">
         <div class="container">
             <a class="navbar-brand fw-semibold" href="../index.html">SIMPUS-Mini</a>
@@ -21,18 +22,20 @@
                     <li class="nav-item"><a class="nav-link" href="tambah.html">Tambah Buku</a></li>
                     <li class="nav-item"><a class="nav-link" href="../anggota/list.html">Daftar Anggota</a></li>
                     <li class="nav-item"><a class="nav-link" href="../anggota/tambah.html">Tambah Anggota</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html">Masuk</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
+    <!-- Konten Utama -->
     <main class="container my-4">
         <section class="card shadow-sm mb-4">
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <h2 class="card-title mb-0" style="color:#d63384;">Daftar Buku</h2>
                     
-                    <!-- Tombol & Form Filter (Sejajar Kesamping dengan text-nowrap) -->
+                    <!-- Tombol Muat Ulang & Filter Pencarian Sejajar -->
                     <div class="d-flex align-items-center gap-2">
                         <button type="button" id="btn-reload" class="btn btn-outline-secondary btn-sm text-nowrap">
                             🔄 Muat Ulang
@@ -57,6 +60,7 @@
                                 <th>Aksi</th>
                             </tr>
                         </thead>
+                        <!-- tbody dikosongkan, akan diisi dinamis oleh Fetch API -->
                         <tbody></tbody>
                     </table>
                 </div>
@@ -64,10 +68,12 @@
         </section>
     </main>
 
+    <!-- Footer -->
     <footer class="text-center text-secondary py-3 small">
         <p class="mb-0">&copy; 2026 SIMPUS-Mini &mdash; Jobsheet 6 (Fetch API & JSON)</p>
     </footer>
 
+    <!-- Script Bootstrap & Application JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/app.js"></script>
     <script src="../assets/js/data-loader.js"></script>
