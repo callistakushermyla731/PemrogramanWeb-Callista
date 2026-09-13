@@ -31,7 +31,14 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <h2 class="card-title mb-0" style="color:#d63384;">Daftar Anggota</h2>
-                    <input type="text" id="search-input" class="form-control w-25" placeholder="Cari nama anggota...">
+                    
+                    <!-- Tombol & Form Filter (Sejajar Kesamping dengan text-nowrap) -->
+                    <div class="d-flex align-items-center gap-2">
+                        <button type="button" id="btn-reload" class="btn btn-outline-secondary btn-sm text-nowrap">
+                            🔄 Muat Ulang
+                        </button>
+                        <input type="text" id="search-input" class="form-control form-control-sm" style="width: 220px;" placeholder="Cari nama anggota...">
+                    </div>
                 </div>
                 
                 <div class="text-end text-muted mb-3">
@@ -49,7 +56,6 @@
                                 <th>Aksi</th>
                             </tr>
                         </thead>
-                        <!-- tbody dikosongkan, akan diisi dinamis oleh anggota.js -->
                         <tbody></tbody>
                     </table>
                 </div>
@@ -63,6 +69,19 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/app.js"></script>
-    <script src="../assets/js/anggota.js"></script>
+    <script src="../assets/js/data-loader.js"></script>
+    <script>
+        function muatDaftarAnggota() {
+            loadGenerikData('../data/anggota.json', '#tabel-anggota', ['no_anggota', 'nama', 'alamat', 'no_hp']);
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            muatDaftarAnggota();
+
+            document.getElementById("btn-reload")?.addEventListener("click", function() {
+                muatDaftarAnggota();
+            });
+        });
+    </script>
 </body>
 </html>

@@ -1,7 +1,9 @@
-// ===== Konfirmasi Hapus (Event Delegation) =====
+// ===== Konfirmasi Hapus (Event Delegation & Console Log Test) =====
 function initHapusConfirm() {
     document.addEventListener("click", function (e) {
-        // Cek jika elemen yang diklik atau elemen terdekatnya memiliki class .btn-hapus
+        // UJI DELEGASI EVENT: Buka F12 Console dan klik di mana saja di halaman
+        console.log("Elemen yang diklik (e.target):", e.target);
+
         const btn = e.target.closest(".btn-hapus");
         if (btn) {
             const row = btn.closest("tr");
@@ -49,7 +51,7 @@ function updateTableCounter() {
     if (!table || !counterEl) return;
 
     const allRows = table.querySelectorAll("tbody tr");
-    // Abaikan baris loading atau baris error
+    
     const dataRows = Array.from(allRows).filter(r => !r.querySelector(".spinner-border") && !r.querySelector(".alert-danger"));
     const totalRows = dataRows.length;
 
@@ -60,10 +62,10 @@ function updateTableCounter() {
         }
     });
 
-    counterEl.textContent = `Menampilkan ${visibleRows} dari${totalRows} data`;
+    counterEl.textContent = `Menampilkan ${visibleRows} dari ${totalRows} data`;
 }
 
-// ===== Helper Pesan Error DOM Form =====
+// ===== Helper Pesan Error Form =====
 function tampilkanError(input, pesan) {
     hapusError(input);
     const span = document.createElement("span");
