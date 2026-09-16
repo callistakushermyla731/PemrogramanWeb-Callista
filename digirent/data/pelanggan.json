@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "id_pelanggan": "CUST-001",
+    "nama": "Callista Kushermyla",
+    "kontak": "08123456789",
+    "email": "callista@example.com"
+  },
+  {
+    "id": 2,
+    "id_pelanggan": "CUST-002",
+    "nama": "Nabila Putri",
+    "kontak": "08987654321",
+    "email": "nabila@example.com"
+  }
+]

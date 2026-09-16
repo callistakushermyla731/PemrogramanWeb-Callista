@@ -1,0 +1,18 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.table > :not(caption) > * > * {
+    padding: 0.85rem 1rem;
+}
+
+.nav-pills .nav-link.active {
+    background-color: rgba(255, 255, 255, 0.25) !important;
+    color: #fff !important;
+    border-radius: 50rem;
+}
+
+#table-counter {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
