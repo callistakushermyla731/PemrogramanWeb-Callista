@@ -2,90 +2,78 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DIGIRENT | Tambah Digicam</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
-<body class="bg-body-tertiary">
-    <header class="navbar navbar-expand-lg navbar-dark sticky-top shadow-sm py-3" style="background-color: #d63384;">
-        <div class="container d-flex flex-column align-items-center position-relative">
-            <div class="w-100 d-flex justify-content-center align-items-center mb-lg-2">
-                <a class="navbar-brand text-white fw-bold display-5 fs-1 m-0" href="../index.html">
-                    DIGIRENT
-                </a>
-                <button class="navbar-toggler border-0 position-absolute end-0 top-0 mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="../index.html" class="brand-title">DIGIRENT</a>
+            
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="hamburger-btn">☰</label>
 
-            <nav class="collapse navbar-collapse w-100 justify-content-center" id="navMenu">
-                <ul class="nav nav-pills align-items-center gap-2 flex-column flex-lg-row justify-content-center mt-3 mt-lg-0">
-                    <li class="nav-item"><a class="nav-link text-white" href="../index.html">Beranda</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="list.html">Katalog Digicam</a></li>
-                    <li class="nav-item"><a class="nav-link text-white fw-semibold active" href="tambah.html">Tambah Digicam</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="../pelanggan/list.html">Daftar Pelanggan</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="../pelanggan/tambah.html">Tambah Pelanggan</a></li>
-                    <li class="nav-item ms-lg-2">
-                        <a class="btn btn-light text-pink fw-bold px-4 btn-sm rounded-pill" style="color:#d63384;" href="../login.html">Login</a>
-                    </li>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Beranda</a></li>
+                    <li><a href="list.html">Katalog Digicam</a></li>
+                    <li><a href="tambah.html" class="active">Tambah Digicam</a></li>
+                    <li><a href="../pelanggan/list.html">Daftar Pelanggan</a></li>
+                    <li><a href="../pelanggan/tambah.html">Tambah Pelanggan</a></li>
+                    <li><a href="../login.html" class="btn-login">Login</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main class="container my-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
-                    <h4 class="fw-bold mb-3" style="color:#d63384;">Tambah Unit Digicam Baru</h4>
-                    <p class="text-muted small mb-4">Isi detail spesifikasi kamera untuk menambahkan koleksi rental baru.</p>
+    <main class="container">
+        <div class="form-card">
+            <h2 style="color:#d63384; margin-bottom: 0.4rem;">Tambah Unit Digicam Baru</h2>
+            <p style="color:#777; font-size: 0.85rem; margin-bottom: 1.5rem;">Isi detail spesifikasi kamera untuk menambahkan koleksi rental baru.</p>
 
-                    <form action="#" method="POST">
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold">Nama Tipe Kamera</label>
-                            <input type="text" class="form-control rounded-3" placeholder="Misal: Canon IXY 650" required>
-                        </div>
-                        <div class="row g-3 mb-3">
-                            <div class="col-md-6">
-                                <label class="form-label fw-semibold">Kategori</label>
-                                <select class="form-select rounded-3">
-                                    <option selected>Pilih Kategori...</option>
-                                    <option value="CCD Sensor">CCD Sensor</option>
-                                    <option value="Compact">Compact</option>
-                                    <option value="Vintage Y2K">Vintage Y2K</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label fw-semibold">Tarif Per Hari (Rp)</label>
-                                <input type="number" class="form-control rounded-3" placeholder="50000" required>
-                            </div>
-                        </div>
-                        <div class="row g-3 mb-4">
-                            <div class="col-md-6">
-                                <label class="form-label fw-semibold">Jumlah Stok Ready</label>
-                                <input type="number" class="form-control rounded-3" placeholder="1" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label fw-semibold">Kondisi Fisik</label>
-                                <input type="text" class="form-control rounded-3" placeholder="Misal: Mulus 95%" required>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-end gap-2">
-                            <a href="list.html" class="btn btn-outline-secondary px-4 rounded-pill">Batal</a>
-                            <button type="submit" class="btn text-white px-4 rounded-pill" style="background-color:#d63384;">Simpan Unit</button>
-                        </div>
-                    </form>
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label>Nama Tipe Kamera</label>
+                    <input type="text" placeholder="Misal: Canon IXY 650" required>
                 </div>
-            </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Kategori</label>
+                        <select required>
+                            <option value="">Pilih Kategori...</option>
+                            <option value="CCD Sensor">CCD Sensor</option>
+                            <option value="Compact">Compact</option>
+                            <option value="Vintage Y2K">Vintage Y2K</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Tarif Per Hari (Rp)</label>
+                        <input type="number" placeholder="50000" required>
+                    </div>
+                </div>
+                <div class="form-row" style="margin-bottom: 1.5rem;">
+                    <div class="form-group">
+                        <label>Jumlah Stok Ready</label>
+                        <input type="number" placeholder="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Kondisi Fisik</label>
+                        <input type="text" placeholder="Misal: Mulus 95%" required>
+                    </div>
+                </div>
+                <div style="display: flex; justify-content: flex-end; gap: 0.8rem;">
+                    <a href="list.html" class="btn-outline">Batal</a>
+                    <button type="submit" class="btn-pink">Simpan Unit</button>
+                </div>
+            </form>
         </div>
     </main>
 
-    <footer class="text-center text-muted py-4 small border-top mt-auto bg-white">
-        <p class="mb-0">&copy; 2026 <strong>DIGIRENT</strong> &mdash; System Management Rental Digicam</p>
+    <footer>
+        <p>&copy; 2026 <strong>DIGIRENT</strong> &mdash; System Management Rental Digicam</p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/app.js"></script>
 </body>
 </html>

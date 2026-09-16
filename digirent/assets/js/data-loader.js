@@ -18,16 +18,16 @@ function loadGenerikData(jsonUrl, tableSelector, keys) {
                 
                 keys.forEach((key, index) => {
                     if (index === 0) {
-                        cellsHtml += `<td class="ps-4 fw-semibold">${item[key]}</td>`;
+                        cellsHtml += `<td style="padding-left: 1.5rem; font-weight: 600;">${item[key]}</td>`;
                     } else {
                         cellsHtml += `<td>${item[key]}</td>`;
                     }
                 });
 
                 cellsHtml += `
-                    <td class="text-end pe-4">
-                        <button class="btn btn-sm btn-outline-primary rounded-pill px-2 py-0 me-1">Edit</button>
-                        <button class="btn btn-sm btn-outline-danger rounded-pill px-2 py-0">Hapus</button>
+                    <td style="text-align: right; padding-right: 1.5rem;">
+                        <button class="btn-action btn-edit">Edit</button>
+                        <button class="btn-action btn-delete">Hapus</button>
                     </td>
                 `;
 
