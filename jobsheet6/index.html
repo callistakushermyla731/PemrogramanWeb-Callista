@@ -7,64 +7,99 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body class="bg-light">
-    <!-- Header Navigasi -->
-    <header class="navbar navbar-expand-lg navbar-dark" style="background-color:#d63384;">
+<body class="bg-body-tertiary">
+    <!-- Navbar Pink -->
+    <header class="navbar navbar-expand-lg navbar-dark sticky-top shadow-sm" style="background-color: #d63384;">
         <div class="container">
-            <a class="navbar-brand fw-semibold" href="index.html">SIMPUS-Mini</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+            <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="index.html">
+                <span>📚</span> SIMPUS-Mini
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <nav class="collapse navbar-collapse" id="navMenu">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="index.html">Beranda</a></li>
+                <ul class="navbar-nav ms-auto gap-1">
+                    <li class="nav-item"><a class="nav-link active fw-semibold" href="index.html">Beranda</a></li>
                     <li class="nav-item"><a class="nav-link" href="buku/list.html">Daftar Buku</a></li>
                     <li class="nav-item"><a class="nav-link" href="buku/tambah.html">Tambah Buku</a></li>
                     <li class="nav-item"><a class="nav-link" href="anggota/list.html">Daftar Anggota</a></li>
                     <li class="nav-item"><a class="nav-link" href="anggota/tambah.html">Tambah Anggota</a></li>
-                    <li class="nav-item"><a class="nav-link fw-bold" href="login.html">Masuk</a></li>
+                    <li class="nav-item ms-lg-2"><a class="btn btn-light text-pink fw-bold px-3 btn-sm rounded-pill mt-1 mt-lg-0" style="color:#d63384;" href="login.html">Masuk</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Konten utama Beranda -->
-    <main class="container my-4">
-        <div class="p-4 mb-4 bg-white rounded-3 shadow-sm border">
-            <h1 class="display-6 fw-bold" style="color:#d63384;">Selamat Datang di Sistem Perpustakaan Mini</h1>
-            <p class="fs-5 text-muted">Aplikasi sederhana untuk mengelola data buku dan anggota perpustakaan.</p>
-        </div>
+    <main class="container my-5">
+        <!-- Hero Section 2-Kolom -->
+        <section class="row align-items-center bg-white rounded-4 p-4 p-lg-5 shadow-sm border mb-4 g-4">
+            <div class="col-lg-7">
+                <span class="badge mb-2 px-3 py-2 rounded-pill fw-bold" style="background-color: #f8d7da; color: #842029;">Sistem Informasi Perpustakaan</span>
+                <h1 class="display-6 fw-bold mb-3" style="color: #2b2b2b;">Kelola Koleksi & Anggota Perpustakaan Lebih Cepat</h1>
+                <p class="text-secondary lead mb-4">Platform manajemen terintegrasi untuk mencatat koleksi buku, data keanggotaan, dan transaksi peminjaman secara efisien.</p>
+                <div class="d-flex gap-2 flex-wrap">
+                    <a href="buku/list.html" class="btn text-white px-4 py-2 rounded-pill fw-semibold shadow-sm" style="background-color: #d63384;">Jelajahi Buku</a>
+                    <a href="buku/tambah.html" class="btn btn-outline-secondary px-4 py-2 rounded-pill fw-semibold">Tambah Koleksi</a>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="p-4 rounded-4 border" style="background-color: #fff0f5;">
+                    <h6 class="fw-bold mb-3" style="color:#d63384;">📢 Pengumuman Perpustakaan</h6>
+                    <ul class="list-unstyled text-muted small mb-0 d-grid gap-2">
+                        <li>📌 Jam Operasional: Senin - Jumat (08.00 - 16.00 WIB)</li>
+                        <li>📌 Batas maksimal peminjaman mandiri: 3 Buku / Anggota</li>
+                        <li>📌 Pengembalian terlambat dikenakan denda administrasi.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-        <div class="card shadow-sm border-0 mb-4">
-            <div class="card-body">
-                <h3 class="card-title h4 mb-3" style="color:#d63384;">Ringkasan</h3>
-                <div class="row text-center g-3">
-                    <div class="col-md-4">
-                        <div class="p-3 rounded-3" style="background-color: #f8d7da; color: #842029;">
-                            <h5>Total Buku</h5>
-                            <p class="display-6 fw-bold mb-0">12</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="p-3 rounded-3" style="background-color: #f8d7da; color: #842029;">
-                            <h5>Total Anggota</h5>
-                            <p class="display-6 fw-bold mb-0">8</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="p-3 rounded-3" style="background-color: #f8d7da; color: #842029;">
-                            <h5>Sedang Dipinjam</h5>
-                            <p class="display-6 fw-bold mb-0">3</p>
+        <!-- Kartu Statistik Nuansa Pink -->
+        <section class="row g-3">
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm rounded-4 border-start border-4 h-100" style="border-color: #d63384 !important;">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <p class="text-muted fw-medium mb-1 small text-uppercase">Total Koleksi</p>
+                                <h3 class="fw-bold mb-0" style="color:#d63384;">12</h3>
+                            </div>
+                            <span class="fs-1">📖</span>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm rounded-4 border-start border-4 h-100" style="border-color: #e6609e !important;">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <p class="text-muted fw-medium mb-1 small text-uppercase">Anggota Terdaftar</p>
+                                <h3 class="fw-bold mb-0 text-dark">8</h3>
+                            </div>
+                            <span class="fs-1">👥</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm rounded-4 border-start border-4 h-100" style="border-color: #f194b8 !important;">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <p class="text-muted fw-medium mb-1 small text-uppercase">Sedang Dipinjam</p>
+                                <h3 class="fw-bold mb-0 text-dark">3</h3>
+                            </div>
+                            <span class="fs-1">🔖</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="text-center text-secondary py-3 small">
-        <p class="mb-0">&copy; 2026 SIMPUS-Mini &mdash; Jobsheet 6 (Fetch API & JSON)</p>
+    <footer class="text-center text-muted py-4 small border-top mt-auto bg-white">
+        <p class="mb-0">&copy; 2026 <strong>SIMPUS-Mini</strong> &mdash; Jobsheet 6 (Fetch API & JSON)</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

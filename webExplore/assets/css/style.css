@@ -1,8 +1,3 @@
-/* ===== Font & Layout Global ===== */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
 /* ===== Override Warna Brand SIMPUS-Mini (Pink) ===== */
 .navbar-brand,
 .nav-link {
@@ -19,13 +14,13 @@ button[type="submit"]:hover {
     background-color: #c2185b !important;
 }
 
-/* ===== Animasi Transisi Navigasi ===== */
+/* 2. Animasi transisi menu navigasi (slide/geser halus) */
 header nav.collapse,
 header nav {
     transition: max-height 0.35s ease-in-out, opacity 0.35s ease-in-out;
 }
 
-/* ===== Styling Pesan Error Validasi JS ===== */
+/* Pesan Error Validasi JS */
 .error {
     display: block;
     color: #d9534f;
@@ -34,23 +29,8 @@ header nav {
     font-weight: 500;
 }
 
-/* ===== Styling Counter Baris Tabel ===== */
+/* Styling Counter Baris Tabel */
 #table-counter {
     font-size: 0.875rem;
     font-weight: 500;
-}
-
-/* ===== Eksplorasi UI Custom (Tabel & Card) ===== */
-.table > :not(caption) > * > * {
-    padding: 0.85rem 1rem;
-}
-
-.badge-soft-pink {
-    background-color: #f8d7da;
-    color: #842029;
-}
-
-.rounded-pill-start {
-    border-top-left-radius: 50rem !important;
-    border-bottom-left-radius: 50rem !important;
 }
