@@ -1,9 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
     console.log("DIGIRENT System Active.");
 
-    // Event Delegation: Mendengarkan klik pada seluruh elemen di halaman
+    // Pola Event Delegation: Mendengarkan event click pada document induk
     document.addEventListener("click", function(e) {
-        // 1. Penanganan Tombol Hapus (Event Delegation)
+        
+        // 1. Delegasi Event untuk Tombol Hapus
         if (e.target && e.target.classList.contains("btn-delete")) {
             const index = e.target.getAttribute("data-index");
             const storageKey = e.target.getAttribute("data-storage");
@@ -15,14 +16,16 @@ document.addEventListener("DOMContentLoaded", function() {
             if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
                 data.splice(index, 1);
                 localStorage.setItem(storageKey, JSON.stringify(data));
+                
+                // Render ulang tabel & atur ulang pencarian setelah hapus
                 renderTable(data, tableSelector, keys, storageKey);
                 setupSearch(data, tableSelector, keys, storageKey);
             }
         }
 
-        // 2. Penanganan Tombol Edit
+        // 2. Delegasi Event untuk Tombol Edit
         if (e.target && e.target.classList.contains("btn-edit")) {
-            alert("Fitur edit data berhasil dipicu!");
+            alert("Fitur edit berhasil dipicu via Event Delegation!");
         }
     });
 });

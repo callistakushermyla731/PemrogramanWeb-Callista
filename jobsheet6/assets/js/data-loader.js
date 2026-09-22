@@ -1,4 +1,4 @@
-// Fungsi dengan async/await & try/catch sesuai standar Jobsheet 6
+// Fungsi Generik untuk memuat data JSON / LocalStorage secara asinkron
 async function loadGenerikData(jsonUrl, tableSelector, keys, storageKey) {
     const tbody = document.querySelector(`${tableSelector} tbody`);
     const counter = document.getElementById("table-counter");
@@ -13,38 +13,43 @@ async function loadGenerikData(jsonUrl, tableSelector, keys, storageKey) {
         if (dataLocal) {
             data = JSON.parse(dataLocal);
         } else {
-            // Fetch API menggunakan await
+            // 2. Fetch API menggunakan async/await
             const response = await fetch(jsonUrl);
             
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                throw new Error(`HTTP Error! Status: ${response.status}`);
             }
             
             data = await response.json();
             localStorage.setItem(storageKey, JSON.stringify(data));
         }
 
-        // Render tabel & setup pencarian
+        // Render tabel & pasang pencarian live
         renderTable(data, tableSelector, keys, storageKey);
         setupSearch(data, tableSelector, keys, storageKey);
 
     } catch (error) {
-        // 2. Penanganan Error
-        console.error("Gagal mengambil data:", error);
-        if (counter) counter.textContent = "Gagal memuat data. Silakan coba lagi.";
+        // 3. Error Handling dengan try/catch
+        console.error("Gagal memuat data:", error);
+        if (counter) counter.textContent = "Gagal memuat data!";
         if (tbody) {
-            tbody.innerHTML = `<tr><td colspan="${keys.length + 1}" style="text-align:center; color:red; padding:1.5rem;">Terjadi kesalahan saat memuat data.</td></tr>`;
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="${keys.length + 1}" style="text-align:center; color:#dc3545; padding: 2rem;">
+                        ⚠️ Terjadi kesalahan saat memuat data. Periksa koneksi atau path file JSON.
+                    </td>
+                </tr>`;
         }
     }
 }
 
-// Rendering elemen <tbody> secara dinamis oleh JS
+// Fungsi Render Tabel ke DOM
 function renderTable(data, tableSelector, keys, storageKey) {
     const tbody = document.querySelector(`${tableSelector} tbody`);
     const counter = document.getElementById("table-counter");
     if (!tbody) return;
 
-    tbody.innerHTML = "";
+    tbody.innerHTML = ""; // Kosongkan tbody terlebih dahulu
 
     if (data.length === 0) {
         if (counter) counter.textContent = "Menampilkan 0 total data";
@@ -66,11 +71,15 @@ function renderTable(data, tableSelector, keys, storageKey) {
             }
         });
 
-        // Tombol aksi ditaruh di dalam baris yang dirender dinamis
+        // Menyimpan data atribut pendukung untuk Event Delegation
         cellsHtml += `
             <td style="text-align: right; padding-right: 1.5rem;">
                 <button class="btn-action btn-edit" data-index="${index}">Edit</button>
-                <button class="btn-action btn-delete" data-index="${index}" data-storage="${storageKey}" data-table="${tableSelector}" data-keys="${keys.join(',')}">Hapus</button>
+                <button class="btn-action btn-delete" 
+                        data-index="${index}" 
+                        data-storage="${storageKey}" 
+                        data-table="${tableSelector}" 
+                        data-keys="${keys.join(',')}">Hapus</button>
             </td>
         `;
 
@@ -79,7 +88,7 @@ function renderTable(data, tableSelector, keys, storageKey) {
     });
 }
 
-// Fitur Pencarian Real-Time
+// Fitur Pencarian Real-Time (Live Search)
 function setupSearch(fullData, tableSelector, keys, storageKey) {
     const searchInput = document.getElementById("search-input");
     if (!searchInput) return;

@@ -10,8 +10,10 @@
     <header>
         <div class="header-container">
             <a href="../index.html" class="brand-title">DIGIRENT</a>
+            
             <input type="checkbox" id="menu-toggle" class="menu-toggle">
             <label for="menu-toggle" class="hamburger-btn">☰</label>
+
             <nav>
                 <ul>
                     <li><a href="../index.html">Beranda</a></li>
@@ -30,7 +32,7 @@
             <div class="table-header">
                 <div>
                     <h2>Katalog Unit Digicam</h2>
-                    <!-- Loading Indicator muncul di sini -->
+                    <!-- Indikator Loading awal -->
                     <p id="table-counter">Memuat data...</p>
                 </div>
                 <div class="toolbar">
@@ -53,7 +55,7 @@
                             <th style="text-align: right; padding-right: 1.5rem;">Kelola</th>
                         </tr>
                     </thead>
-                    <!-- tbody kosong, diisi oleh JS -->
+                    <!-- tbody KOSONG, diisi secara dinamis oleh JavaScript -->
                     <tbody></tbody>
                 </table>
             </div>
@@ -73,6 +75,8 @@
 
         document.addEventListener("DOMContentLoaded", function() {
             muatDaftarDigicam();
+
+            // Fitur Muat Ulang / Refresh Data
             document.getElementById("btn-reload")?.addEventListener("click", function() {
                 localStorage.removeItem('digisewa_digicam');
                 muatDaftarDigicam();
