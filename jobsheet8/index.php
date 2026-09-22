@@ -17,7 +17,7 @@ include 'includes/header.php';
         <h3>📢 Ketentuan Rental</h3>
         <ul>
             <li>📌 Wajib menyertakan identitas asli (KTP/KTM).</li>
-            <li>📌 Durasi sewa dihitung 24 jam sejak pengambilan.</li>
+            <li>📌 Durasi sewa dihitung 24 jam sejak pengambilan.</li>  
             <li>📌 Sudah termasuk memory card & pouch kamera.</li>
         </ul>
     </div>
