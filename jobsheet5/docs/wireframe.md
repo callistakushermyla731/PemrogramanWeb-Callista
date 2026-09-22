@@ -47,19 +47,47 @@
 
 //Tampilan HP / Responsive Inspect Mode
 +-----------------------+
-|       DIGIRENT     ☰  | <- Brand Title Rata Tengah + Tombol Hamburger
-+-----------------------+
-| [Beranda]             |
-| [Katalog Digicam]     | <- Menu muncul saat ☰ di-klik
-| [Tambah Digicam]      |
-| [Daftar Pelanggan]    |
-| [Login]               |
+|       DIGIRENT     ☰  | <- Brand Title + Hamburger Menu Toggle
 +-----------------------+
 |                       |
-| +-------------------+ |
-| | Katalog Digicam   | |
-| | [🔄 Refresh]      | | <- Elemen bertumpuk vertikal
-| | [Cari...]         | |
-| +-------------------+ |
+|  +-----------------+  |
+|  |        🔑       |  |
+|  |   Masuk Admin   |  |
+|  |                 |  |
+|  | Username/Email  |  |
+|  | [_____________] |  |
+|  |                 |  |
+|  | Kata Sandi      |  |
+|  | [_____________] |  |
+|  |                 |  |
+|  | (==== Login ===)|  |
+|  +-----------------+  |
 |                       |
 +-----------------------+
+|   © 2026 DIGIRENT     |
++-----------------------+
+
+//Halaman Login Admin
++-----------------------------------------------------------------------+
+|                              DIGIRENT                                 |
+|    [Beranda] [Katalog Digicam] [Tambah Digicam] ... [Login*]          | <- Navbar Header
++-----------------------------------------------------------------------+
+|                                                                       |
+|                  +----------------------------------+                 |
+|                  |                🔑                |                 | <- Ikon Kunci
+|                  |           Masuk Admin            |                 | <- Judul Form (Pink)
+|                  |  Silakan masuk ke panel manajemen |                 | <- Subtitle Grey
+|                  |                                  |                 |
+|                  | Username / Email                 |                 |
+|                  | [ admin@digirent.com__________ ] |                 | <- Input Text
+|                  |                                  |                 |
+|                  | Kata Sandi                       |                 |
+|                  | [ ••••••••____________________ ] |                 | <- Input Password
+|                  |                                  |                 |
+|                  | [============ Login ===========] |                 | <- Tombol Full Width (Pink)
+|                  +----------------------------------+                 |
+|                                                                       |
++-----------------------------------------------------------------------+
+|               © 2026 DIGIRENT — System Management                     | <- Footer
++-----------------------------------------------------------------------+
+
