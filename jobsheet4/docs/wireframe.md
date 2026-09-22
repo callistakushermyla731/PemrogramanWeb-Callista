@@ -35,7 +35,7 @@
 |  | Katalog Unit Digicam               [ 🔄 Refresh ] [ Cari... ]   |  <- Toolbar Table Header
 |  | Menampilkan 3 total data                                        |  |
 |  |-----------------------------------------------------------------|  |
-|  | NAMA KAMERA | KATEGORI | TARIF/HARI | STOK | KONDISI | AKSI    |  |  <- Table Head
+|  | NAMA KAMERA | KATEGORI | TARIF/HARI | STOK | KONDISI | KELOLA   |  |  <- Table Head
 |  |-------------+----------+------------+------+---------+---------|  |
 |  | Canon IXY   | CCD      | Rp 50.000  |  3   | Mulus   | (E) (H) |  |  <- Table Row (Dynamic)
 |  | Sony Cyber  | Compact  | Rp 65.000  |  2   | Baik    | (E) (H) |  |
