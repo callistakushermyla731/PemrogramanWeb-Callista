@@ -1,7 +1,7 @@
 </main>
 
     <footer style="text-align: center; padding: 1.5rem; margin-top: auto; border-top: 1px solid #eee;">
-        <p>&copy; 2026 <strong>DIGIRENT</strong> &mdash; System Management Rental Digicam (PHP Jobsheet 7)</p>
+        <p>&copy; 2026 <strong>DIGIRENT</strong> &mdash; System Management Rental Digicam </p>
         
         <!-- Fitur Latihan 7.4: Reset Session & Debug -->
         <div style="margin-top: 0.8rem; font-size: 0.8rem;">
