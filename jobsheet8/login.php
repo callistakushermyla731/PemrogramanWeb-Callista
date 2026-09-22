@@ -1,27 +1,57 @@
 <?php
-$depth = 0;
-include 'includes/header.php';
+session_start();
+
+if (isset($_SESSION["login"]) && $_SESSION["login"] === true) {
+    header("Location: index.php");
+    exit;
+}
 ?>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Jobsheet 8</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
 
-<div class="form-card" style="max-width: 400px; margin-top: 2rem;">
-    <div style="text-align: center; margin-bottom: 1.5rem;">
-        <h2 style="color: #d63384;">Login Administrator</h2>
-        <p style="color: #666; font-size: 0.85rem; margin-top: 0.3rem;">Silakan masuk ke akun DIGIRENT kamu</p>
+<?php include "includes/header.php"; ?>
+
+<main class="container">
+    <div class="login-wrapper">
+        <div class="login-card">
+            <h1>Login</h1>
+            <p class="login-subtitle">Silakan masuk untuk mengelola data</p>
+
+            <?php if (isset($_SESSION["error"])): ?>
+                <div class="alert alert-danger">
+                    <?= htmlspecialchars($_SESSION["error"]) ?>
+                </div>
+                <?php unset($_SESSION["error"]); ?>
+            <?php endif; ?>
+
+            <form action="proses_login.php" method="post">
+                <div class="form-group">
+                    <label for="email">Username</label>
+                    <input type="email" id="email" name="email"
+                           placeholder="Masukkan username"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password"
+                           placeholder="Masukkan password"
+                           required>
+                </div>
+
+                <button type="submit" class="btn-pink">Login</button>
+            </form>
+        </div>
     </div>
+</main>
 
-    <form action="proses_login.php" method="POST">
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" placeholder="Masukkan username" required autofocus>
-        </div>
-
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" placeholder="Masukkan password" required>
-        </div>
-
-        <button type="submit" class="btn-pink" style="width: 100%; margin-top: 0.8rem;">Masuk</button>
-    </form>
-</div>
-
-<?php include 'includes/footer.php'; ?>
+<?php include "includes/footer.php"; ?>
+</body>
+</html>

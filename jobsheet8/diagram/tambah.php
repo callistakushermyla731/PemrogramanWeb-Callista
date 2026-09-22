@@ -12,7 +12,7 @@ require_once "../includes/koneksi.php";
 $edit = null;
 if (isset($_GET["edit"])) {
     $id = (int)$_GET["edit"];
-    $stmt = $conn->prepare("SELECT * FROM pelanggan WHERE id = ?");
+    $stmt = $conn->prepare("SELECT * FROM diagram WHERE id = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $edit = $stmt->get_result()->fetch_assoc();
@@ -29,7 +29,7 @@ if (isset($_GET["edit"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $edit ? "Edit" : "Tambah" ?> Pelanggan</title>
+    <title><?= $edit ? "Edit" : "Tambah" ?> Diagram</title>
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
@@ -38,38 +38,24 @@ if (isset($_GET["edit"])) {
 <main class="container">
     <div class="form-card">
         <h2 style="color:#d63384; margin-bottom:1.5rem;">
-            <?= $edit ? "Edit Data Pelanggan" : "Tambah Data Pelanggan" ?>
+            <?= $edit ? "Edit Data Diagram" : "Tambah Data Diagram" ?>
         </h2>
 
         <form action="proses_tambah.php" method="post">
             <input type="hidden" name="id" value="<?= $edit["id"] ?? "" ?>">
 
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="nama">Nama</label>
-                    <input type="text" id="nama" name="nama"
-                           value="<?= htmlspecialchars($edit["nama"] ?? "") ?>" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email"
-                           value="<?= htmlspecialchars($edit["email"] ?? "") ?>" required>
-                </div>
+            <div class="form-group">
+                <label for="nama">Nama</label>
+                <input type="text" id="nama" name="nama"
+                       value="<?= htmlspecialchars($edit["nama"] ?? "") ?>"
+                       required>
             </div>
 
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="no_hp">No. HP</label>
-                    <input type="tel" id="no_hp" name="no_hp"
-                           value="<?= htmlspecialchars($edit["no_hp"] ?? "") ?>" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="alamat">Alamat</label>
-                    <input type="text" id="alamat" name="alamat"
-                           value="<?= htmlspecialchars($edit["alamat"] ?? "") ?>" required>
-                </div>
+            <div class="form-group">
+                <label for="keterangan">Keterangan</label>
+                <input type="text" id="keterangan" name="keterangan"
+                       value="<?= htmlspecialchars($edit["keterangan"] ?? "") ?>"
+                       required>
             </div>
 
             <div class="btn-group">

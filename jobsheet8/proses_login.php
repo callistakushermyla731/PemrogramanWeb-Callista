@@ -1,38 +1,21 @@
 <?php
 session_start();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = trim($_POST['username'] ?? '');
-    $password = trim($_POST['password'] ?? '');
+$username_benar = "admindigirent123@gmail.com";
+$password_benar = "12345678";
 
-    // Kredensial Akses Admin
-    $valid_username = 'admindigirent123';
-    $valid_password = '12345678';
+$email = trim($_POST["email"] ?? "");
+$password = $_POST["password"] ?? "";
 
-    if ($username === $valid_username && $password === $valid_password) {
-        // Simpan session login
-        $_SESSION['user'] = [
-            'username' => $username,
-            'role' => 'admin'
-        ];
-
-        $_SESSION['flash'] = [
-            'type' => 'success',
-            'message' => 'Selamat datang kembali, Admin DIGIRENT!'
-        ];
-
-        header('Location: index.php');
-        exit;
-    } else {
-        $_SESSION['flash'] = [
-            'type' => 'danger',
-            'message' => 'Username atau password yang kamu masukkan salah!'
-        ];
-
-        header('Location: login.php');
-        exit;
-    }
-} else {
-    header('Location: login.php');
+if ($email === $username_benar && $password === $password_benar) {
+    session_regenerate_id(true);
+    $_SESSION["login"] = true;
+    $_SESSION["email"] = $email;
+    $_SESSION["pesan"] = "Login berhasil. Hallo " . $email . "!";
+    header("Location: index.php");
     exit;
 }
+
+$_SESSION["error"] = "Username atau password salah.";
+header("Location: login.php");
+exit;

@@ -5,17 +5,24 @@ session_start();
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Debug Session Data</title>
-    <style>
-        body { font-family: monospace; background: #1e1e1e; color: #00ff66; padding: 2rem; }
-        h2 { color: #fff; border-bottom: 1px solid #444; padding-bottom: 0.5rem; }
-        pre { background: #2d2d2d; padding: 1rem; border-radius: 8px; overflow-x: auto; }
-        a { color: #00bcff; text-decoration: none; }
-    </style>
+    <title>Debug Session</title>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <h2>🔍 Debugging Isi $_SESSION Mentah</h2>
-    <p><a href="index.php">&larr; Kembali ke Aplikasi</a></p>
-    <pre><?php print_r($_SESSION); ?></pre>
+<?php include "includes/header.php"; ?>
+<main class="container">
+    <div class="table-card">
+        <div class="table-header">
+            <div>
+                <h2>Debug Session</h2>
+                <p>Informasi session saat ini.</p>
+            </div>
+        </div>
+        <div style="padding:1.5rem;">
+            <pre><?= htmlspecialchars(print_r($_SESSION, true)) ?></pre>
+        </div>
+    </div>
+</main>
+<?php include "includes/footer.php"; ?>
 </body>
 </html>

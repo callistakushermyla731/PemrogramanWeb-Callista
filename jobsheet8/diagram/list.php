@@ -2,14 +2,14 @@
 session_start();
 require_once "../includes/koneksi.php";
 
-$data = $conn->query("SELECT * FROM pelanggan ORDER BY id DESC");
+$data = $conn->query("SELECT * FROM diagram ORDER BY id DESC");
 ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Pelanggan</title>
+    <title>Data Diagram</title>
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
@@ -29,8 +29,8 @@ $data = $conn->query("SELECT * FROM pelanggan ORDER BY id DESC");
     <div class="table-card">
         <div class="table-header">
             <div>
-                <h2>Data Pelanggan</h2>
-                <p>Daftar data pelanggan.</p>
+                <h2>Data Diagram</h2>
+                <p>Daftar data diagram.</p>
             </div>
             <?php if (isset($_SESSION["login"]) && $_SESSION["login"] === true): ?>
                 <a href="tambah.php" class="btn-pink">+ Tambah Data</a>
@@ -43,9 +43,7 @@ $data = $conn->query("SELECT * FROM pelanggan ORDER BY id DESC");
                     <tr>
                         <th>No</th>
                         <th>Nama</th>
-                        <th>Email</th>
-                        <th>No. HP</th>
-                        <th>Alamat</th>
+                        <th>Keterangan</th>
                         <?php if (isset($_SESSION["login"]) && $_SESSION["login"] === true): ?>
                             <th>Aksi</th>
                         <?php endif; ?>
@@ -57,9 +55,7 @@ $data = $conn->query("SELECT * FROM pelanggan ORDER BY id DESC");
                         <tr>
                             <td><?= $no++ ?></td>
                             <td><?= htmlspecialchars($row["nama"]) ?></td>
-                            <td><?= htmlspecialchars($row["email"]) ?></td>
-                            <td><?= htmlspecialchars($row["no_hp"]) ?></td>
-                            <td><?= htmlspecialchars($row["alamat"]) ?></td>
+                            <td><?= htmlspecialchars($row["keterangan"]) ?></td>
                             <?php if (isset($_SESSION["login"]) && $_SESSION["login"] === true): ?>
                                 <td class="actions">
                                     <a href="tambah.php?edit=<?= $row["id"] ?>" class="btn-action btn-edit">Edit</a>
@@ -71,7 +67,7 @@ $data = $conn->query("SELECT * FROM pelanggan ORDER BY id DESC");
                         </tr>
                     <?php endwhile; ?>
                 <?php else: ?>
-                    <tr><td colspan="6" class="empty-state">Belum ada data.</td></tr>
+                    <tr><td colspan="4" class="empty-state">Belum ada data.</td></tr>
                 <?php endif; ?>
                 </tbody>
             </table>
