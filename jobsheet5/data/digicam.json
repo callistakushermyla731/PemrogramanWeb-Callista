@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "nama_kamera": "Canon IXY 650",
+    "kategori": "CCD Sensor",
+    "tarif_per_hari": "Rp 50.000",
+    "stok": 3,
+    "kondisi": "Sangat Baik"
+  },
+  {
+    "id": 2,
+    "nama_kamera": "Sony Cyber-shot W830",
+    "kategori": "Compact",
+    "tarif_per_hari": "Rp 65.000",
+    "stok": 2,
+    "kondisi": "Mulus"
+  },
+  {
+    "id": 3,
+    "nama_kamera": "Nikon Coolpix S3300",
+    "kategori": "Vintage Y2K",
+    "tarif_per_hari": "Rp 55.000",
+    "stok": 1,
+    "kondisi": "Baik"
+  }
+]

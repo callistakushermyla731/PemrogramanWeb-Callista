@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIGIRENT | Login Admin</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="brand-title">DIGIRENT</a>
+            
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="hamburger-btn">☰</label>
+
+            <nav>
+                <ul>
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="digicam/list.html">Katalog Digicam</a></li>
+                    <li><a href="digicam/tambah.html">Tambah Digicam</a></li>
+                    <li><a href="pelanggan/list.html">Daftar Pelanggan</a></li>
+                    <li><a href="pelanggan/tambah.html">Tambah Pelanggan</a></li>
+                    <li><a href="login.html" class="btn-login active">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="form-card" style="max-width: 420px; text-align: center;">
+            <span style="font-size: 2.5rem;">🔑</span>
+            <h2 style="color: #d63384; margin-top: 0.5rem; margin-bottom: 0.3rem;">Masuk Admin</h2>
+            <p style="color: #777; font-size: 0.85rem; margin-bottom: 1.8rem;">Silakan masuk ke panel manajemen</p>
+            
+            <form action="index.html" method="GET" style="text-align: left;">
+                <div class="form-group">
+                    <label>Username / Email</label>
+                    <input type="text" placeholder="admin@digirent.com" required>
+                </div>
+                <div class="form-group" style="margin-bottom: 1.8rem;">
+                    <label>Kata Sandi</label>
+                    <input type="password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-pink" style="width: 100%; border-radius: 50px; padding: 0.75rem;">Login</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 <strong>DIGIRENT</strong> &mdash; System Management Rental Digicam</p>
+    </footer>
+
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

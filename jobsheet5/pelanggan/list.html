@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIGIRENT | Daftar Pelanggan</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="../index.html" class="brand-title">DIGIRENT</a>
+            
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="hamburger-btn">☰</label>
+
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Beranda</a></li>
+                    <li><a href="../digicam/list.html">Katalog Digicam</a></li>
+                    <li><a href="../digicam/tambah.html">Tambah Digicam</a></li>
+                    <li><a href="list.html" class="active">Daftar Pelanggan</a></li>
+                    <li><a href="tambah.html">Tambah Pelanggan</a></li>
+                    <li><a href="../login.html" class="btn-login">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="table-card">
+            <div class="table-header">
+                <div>
+                    <h2>Direktori Pelanggan</h2>
+                    <p id="table-counter">Memuat data penyewa...</p>
+                </div>
+                <div class="toolbar">
+                    <button type="button" id="btn-reload" class="btn-reload">
+                        <span>🔄</span> Refresh
+                    </button>
+                    <input type="text" id="search-input" class="search-input" placeholder="Cari nama penyewa...">
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table id="tabel-pelanggan">
+                    <thead>
+                        <tr>
+                            <th style="padding-left: 1.5rem;">ID Pelanggan</th>
+                            <th>Nama Lengkap</th>
+                            <th>No. WhatsApp</th>
+                            <th>Email</th>
+                            <th style="text-align: right; padding-right: 1.5rem;">Kelola</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 <strong>DIGIRENT</strong> &mdash; Fetch API & JSON Data</p>
+    </footer>
+
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/data-loader.js"></script>
+    <script>
+        function muatDaftarPelanggan() {
+            loadGenerikData('../data/pelanggan.json', '#tabel-pelanggan', ['id_pelanggan', 'nama', 'kontak', 'email'], 'digisewa_pelanggan');
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            muatDaftarPelanggan();
+            document.getElementById("btn-reload")?.addEventListener("click", function() {
+                localStorage.removeItem('digisewa_pelanggan');
+                location.reload();
+            });
+        });
+    </script>
+</body>
+</html>

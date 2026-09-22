@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIGIRENT | Tambah Digicam</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="../index.html" class="brand-title">DIGIRENT</a>
+            
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="hamburger-btn">☰</label>
+
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Beranda</a></li>
+                    <li><a href="list.html">Katalog Digicam</a></li>
+                    <li><a href="tambah.html" class="active">Tambah Digicam</a></li>
+                    <li><a href="../pelanggan/list.html">Daftar Pelanggan</a></li>
+                    <li><a href="../pelanggan/tambah.html">Tambah Pelanggan</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="form-card">
+            <h2 style="color:#d63384; margin-bottom: 0.4rem;">Tambah Unit Digicam Baru</h2>
+            <p style="color:#777; font-size: 0.85rem; margin-bottom: 1.5rem;">Isi detail spesifikasi kamera untuk menambahkan koleksi rental baru.</p>
+
+            <form action="#" method="POST" id="form-tambah-digicam">
+                <div class="form-group">
+                    <label>Nama Tipe Kamera</label>
+                    <input type="text" placeholder="Misal: Canon IXY 650" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Kategori</label>
+                        <select required>
+                            <option value="">Pilih Kategori...</option>
+                            <option value="CCD Sensor">CCD Sensor</option>
+                            <option value="Compact">Compact</option>
+                            <option value="Vintage Y2K">Vintage Y2K</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Tarif Per Hari (Rp)</label>
+                        <input type="number" placeholder="50000" required>
+                    </div>
+                </div>
+                <div class="form-row" style="margin-bottom: 1.5rem;">
+                    <div class="form-group">
+                        <label>Jumlah Stok Ready</label>
+                        <input type="number" placeholder="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Kondisi Fisik</label>
+                        <input type="text" placeholder="Misal: Mulus 95%" required>
+                    </div>
+                </div>
+                <div style="display: flex; justify-content: flex-end; gap: 0.8rem;">
+                    <a href="list.html" class="btn-outline">Batal</a>
+                    <button type="submit" class="btn-pink">Simpan Unit</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 <strong>DIGIRENT</strong> &mdash; System Management Rental Digicam</p>
+    </footer>
+
+    <script src="../assets/js/app.js"></script>
+    <script>
+        document.getElementById("form-tambah-digicam")?.addEventListener("submit", function(e) {
+            e.preventDefault();
+            const inputs = this.querySelectorAll("input, select");
+            const dataBaru = {
+                id: Date.now(),
+                nama_kamera: inputs[0].value,
+                kategori: inputs[1].value,
+                tarif_per_hari: "Rp " + Number(inputs[2].value).toLocaleString("id-ID"),
+                stok: parseInt(inputs[3].value),
+                kondisi: inputs[4].value
+            };
+
+            let dataLocal = JSON.parse(localStorage.getItem("digisewa_digicam")) || [];
+            dataLocal.push(dataBaru);
+            localStorage.setItem("digisewa_digicam", JSON.stringify(dataLocal));
+
+            alert("Unit Digicam berhasil ditambahkan!");
+            window.location.href = "list.html";
+        });
+    </script>
+</body>
+</html>
