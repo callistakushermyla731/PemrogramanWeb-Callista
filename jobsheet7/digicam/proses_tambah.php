@@ -8,11 +8,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stok        = trim($_POST['stok'] ?? '');
     $kondisi     = trim($_POST['kondisi'] ?? '');
 
-    // Validasi Sisi Server (Server-Side Validation)
-    if (empty($nama_kamera) || empty($kategori) || empty($tarif) || empty($stok) || empty($kondisi)) {
+    // 1. Validasi Wajib Isi (Server-Side)
+    if (empty($nama_kamera) || empty($kategori) || $tarif === '' || $stok === '' || empty($kondisi)) {
         $_SESSION['flash'] = [
             'type' => 'danger',
             'message' => 'Gagal menyimpan! Semua kolom formulir wajib diisi.'
+        ];
+        header('Location: tambah.php');
+        exit;
+    }
+
+    // 2. Validasi Latihan 7.4: Tarif dan Stok Non-Negatif
+    if ((float)$tarif < 0 || (int)$stok < 0) {
+        $_SESSION['flash'] = [
+            'type' => 'danger',
+            'message' => 'Gagal menyimpan! Tarif dan stok tidak boleh bernilai negatif.'
         ];
         header('Location: tambah.php');
         exit;
@@ -34,13 +44,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Simpan ke array $_SESSION
     $_SESSION['digicam'][] = $data_baru;
 
-    // Set flash message sukses
+    // Flash Message Sukses
     $_SESSION['flash'] = [
         'type' => 'success',
-        'message' => 'Unit Digicam baru berhasil ditambahkan!'
+        'message' => 'Unit Digicam berhasil ditambahkan.'
     ];
 
-    // Redirect ke halaman list.php
     header('Location: list.php');
     exit;
 } else {

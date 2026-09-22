@@ -7,11 +7,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $kontak       = trim($_POST['kontak'] ?? '');
     $email        = trim($_POST['email'] ?? '');
 
-    // Validasi Sisi Server
+    // 1. Validasi Wajib Isi
     if (empty($id_pelanggan) || empty($nama) || empty($kontak) || empty($email)) {
         $_SESSION['flash'] = [
             'type' => 'danger',
             'message' => 'Gagal mendaftar! Semua kolom inputan wajib diisi.'
+        ];
+        header('Location: tambah.php');
+        exit;
+    }
+
+    // 2. Validasi Latihan 7.4: Format No. WhatsApp menggunakan preg_match()
+    // Memastikan kontak hanya berisi angka, spasi, atau tanda tambah (+) di awal
+    if (!preg_match('/^\+?[0-9\s\-]+$/', $kontak)) {
+        $_SESSION['flash'] = [
+            'type' => 'danger',
+            'message' => 'Gagal mendaftar! Format No. WhatsApp hanya boleh berisi angka, tanda hubung, atau tanda (+).'
         ];
         header('Location: tambah.php');
         exit;
@@ -29,13 +40,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Simpan ke array $_SESSION
     $_SESSION['pelanggan'][] = $data_baru;
 
-    // Set flash message sukses
+    // Flash Message Sukses
     $_SESSION['flash'] = [
         'type' => 'success',
-        'message' => 'Pelanggan baru berhasil didaftarkan!'
+        'message' => 'Pelanggan berhasil didaftarkan.'
     ];
 
-    // Redirect ke list.php
     header('Location: list.php');
     exit;
 } else {
