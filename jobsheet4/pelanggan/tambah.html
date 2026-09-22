@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIGIRENT | Tambah Pelanggan</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="../index.html" class="brand-title">DIGIRENT</a>
+            
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="hamburger-btn">☰</label>
+
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Beranda</a></li>
+                    <li><a href="../digicam/list.html">Katalog Digicam</a></li>
+                    <li><a href="../digicam/tambah.html">Tambah Digicam</a></li>
+                    <li><a href="list.html">Daftar Pelanggan</a></li>
+                    <li><a href="tambah.html" class="active">Tambah Pelanggan</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="form-card">
+            <h2 style="color:#d63384; margin-bottom: 0.4rem;">Registrasi Pelanggan Baru</h2>
+            <p style="color:#777; font-size: 0.85rem; margin-bottom: 1.5rem;">Input data penyewa untuk verifikasi identitas rental kamera.</p>
+
+            <form action="#" method="POST" id="form-tambah-pelanggan">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>ID Pelanggan / KTP</label>
+                        <input type="text" placeholder="CUST-00X" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" placeholder="Nama penyewa..." required>
+                    </div>
+                </div>
+                <div class="form-row" style="margin-bottom: 1.5rem;">
+                    <div class="form-group">
+                        <label>No. WhatsApp</label>
+                        <input type="tel" placeholder="08XXXXXXXXXX" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Active</label>
+                        <input type="email" placeholder="email@domain.com" required>
+                    </div>
+                </div>
+                <div style="display: flex; justify-content: flex-end; gap: 0.8rem;">
+                    <a href="list.html" class="btn-outline">Batal</a>
+                    <button type="submit" class="btn-pink">Daftarkan Pelanggan</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 <strong>DIGIRENT</strong> &mdash; System Management Rental Digicam</p>
+    </footer>
+
+    <script src="../assets/js/app.js"></script>
+    <script>
+        document.getElementById("form-tambah-pelanggan")?.addEventListener("submit", function(e) {
+            e.preventDefault();
+            const inputs = this.querySelectorAll("input");
+            const dataBaru = {
+                id: Date.now(),
+                id_pelanggan: inputs[0].value,
+                nama: inputs[1].value,
+                kontak: inputs[2].value,
+                email: inputs[3].value
+            };
+
+            let dataLocal = JSON.parse(localStorage.getItem("digisewa_pelanggan")) || [];
+            dataLocal.push(dataBaru);
+            localStorage.setItem("digisewa_pelanggan", JSON.stringify(dataLocal));
+
+            alert("Pelanggan berhasil didaftarkan!");
+            window.location.href = "list.html";
+        });
+    </script>
+</body>
+</html>
