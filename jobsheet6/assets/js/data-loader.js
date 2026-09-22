@@ -1,76 +1,94 @@
-/**
- * Fungsi Generik untuk Mengambil dan Merender Data JSON ke Tabel HTML
- * @param {string} url - Path ke file JSON
- * @param {string} tableId - ID dari elemen tabel (misal: '#tabel-buku')
- * @param {Array<string>} keys - Daftar kunci/properti JSON yang mau ditampilkan sebagai kolom
- */
-async function loadGenerikData(url, tableId, keys) {
-    const table = document.querySelector(tableId);
-    if (!table) return;
+// Fungsi dengan async/await & try/catch sesuai standar Jobsheet 6
+async function loadGenerikData(jsonUrl, tableSelector, keys, storageKey) {
+    const tbody = document.querySelector(`${tableSelector} tbody`);
+    const counter = document.getElementById("table-counter");
 
-    const tbody = table.querySelector("tbody");
-    if (!tbody) return;
-
-    // 1. Tampilkan indikator loading
-    const totalCols = keys.length + 1; // Jumlah kolom data + 1 kolom Aksi
-    tbody.innerHTML = `
-        <tr id="loading-indicator">
-            <td colspan="${totalCols}" class="text-center py-4">
-                <div class="spinner-border" style="color: #d63384;" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                </div>
-                <p class="mt-2 text-muted mb-0">Memuat data dari server...</p>
-            </td>
-        </tr>
-    `;
+    // 1. Loading Indicator
+    if (counter) counter.textContent = "Memuat data...";
 
     try {
-        // Delay simulasi 3 detik (3000ms) agar loading indicator terlihat jelas
-        await new Promise((resolve) => setTimeout(resolve, 3000));
+        let data;
+        let dataLocal = localStorage.getItem(storageKey);
 
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`HTTP Error! Status: ${response.status}`);
+        if (dataLocal) {
+            data = JSON.parse(dataLocal);
+        } else {
+            // Fetch API menggunakan await
+            const response = await fetch(jsonUrl);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            data = await response.json();
+            localStorage.setItem(storageKey, JSON.stringify(data));
         }
 
-        const data = await response.json();
-        tbody.innerHTML = ""; // Kosongkan tbody dari loading indicator
+        // Render tabel & setup pencarian
+        renderTable(data, tableSelector, keys, storageKey);
+        setupSearch(data, tableSelector, keys, storageKey);
 
-        if (data.length === 0) {
-            tbody.innerHTML = `<tr><td colspan="${totalCols}" class="text-center text-muted py-3">Tidak ada data.</td></tr>`;
-            return;
+    } catch (error) {
+        // 2. Penanganan Error
+        console.error("Gagal mengambil data:", error);
+        if (counter) counter.textContent = "Gagal memuat data. Silakan coba lagi.";
+        if (tbody) {
+            tbody.innerHTML = `<tr><td colspan="${keys.length + 1}" style="text-align:center; color:red; padding:1.5rem;">Terjadi kesalahan saat memuat data.</td></tr>`;
         }
+    }
+}
 
-        // 2. Render baris secara dinamis berdasarkan daftar kunci/keys
-        data.forEach((item) => {
-            const tr = document.createElement("tr");
+// Rendering elemen <tbody> secara dinamis oleh JS
+function renderTable(data, tableSelector, keys, storageKey) {
+    const tbody = document.querySelector(`${tableSelector} tbody`);
+    const counter = document.getElementById("table-counter");
+    if (!tbody) return;
 
-            // Generasi <td> dari setiap kunci di dalam array keys
-            let cellsHtml = keys.map((key) => `<td>${item[key] ?? "-"}</td>`).join("");
+    tbody.innerHTML = "";
 
-            // Tambahkan kolom Aksi (Edit & Hapus)
-            cellsHtml += `
-                <td>
-                    <button type="button" class="btn btn-warning btn-sm text-white me-1">Edit</button>
-                    <button type="button" class="btn btn-danger btn-sm btn-hapus">Hapus</button>
-                </td>
-            `;
+    if (data.length === 0) {
+        if (counter) counter.textContent = "Menampilkan 0 total data";
+        tbody.innerHTML = `<tr><td colspan="${keys.length + 1}" style="text-align:center; padding:1.5rem;">Data tidak ditemukan.</td></tr>`;
+        return;
+    }
 
-            tr.innerHTML = cellsHtml;
-            tbody.appendChild(tr);
+    if (counter) counter.textContent = `Menampilkan ${data.length} total data`;
+
+    data.forEach((item, index) => {
+        const tr = document.createElement("tr");
+        let cellsHtml = "";
+        
+        keys.forEach((key, keyIndex) => {
+            if (keyIndex === 0) {
+                cellsHtml += `<td style="padding-left: 1.5rem; font-weight: 600;">${item[key]}</td>`;
+            } else {
+                cellsHtml += `<td>${item[key]}</td>`;
+            }
         });
 
-        if (typeof updateTableCounter === "function") {
-            updateTableCounter();
-        }
-    } catch (error) {
-        console.error("Gagal mengambil data:", error);
-        tbody.innerHTML = `
-            <tr>
-                <td colspan="${totalCols}" class="text-center text-danger py-3">
-                    <strong>Gagal memuat data:</strong> ${error.message}
-                </td>
-            </tr>
+        // Tombol aksi ditaruh di dalam baris yang dirender dinamis
+        cellsHtml += `
+            <td style="text-align: right; padding-right: 1.5rem;">
+                <button class="btn-action btn-edit" data-index="${index}">Edit</button>
+                <button class="btn-action btn-delete" data-index="${index}" data-storage="${storageKey}" data-table="${tableSelector}" data-keys="${keys.join(',')}">Hapus</button>
+            </td>
         `;
-    }
+
+        tr.innerHTML = cellsHtml;
+        tbody.appendChild(tr);
+    });
+}
+
+// Fitur Pencarian Real-Time
+function setupSearch(fullData, tableSelector, keys, storageKey) {
+    const searchInput = document.getElementById("search-input");
+    if (!searchInput) return;
+
+    searchInput.oninput = function() {
+        const query = this.value.toLowerCase();
+        const filteredData = fullData.filter(item => {
+            return keys.some(key => String(item[key]).toLowerCase().includes(query));
+        });
+        renderTable(filteredData, tableSelector, keys, storageKey);
+    };
 }

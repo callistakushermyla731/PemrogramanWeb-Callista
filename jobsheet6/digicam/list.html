@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIGIRENT | Katalog Digicam</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="../index.html" class="brand-title">DIGIRENT</a>
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="hamburger-btn">☰</label>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Beranda</a></li>
+                    <li><a href="list.html" class="active">Katalog Digicam</a></li>
+                    <li><a href="tambah.html">Tambah Digicam</a></li>
+                    <li><a href="../pelanggan/list.html">Daftar Pelanggan</a></li>
+                    <li><a href="../pelanggan/tambah.html">Tambah Pelanggan</a></li>
+                    <li><a href="../login.html" class="btn-login">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="table-card">
+            <div class="table-header">
+                <div>
+                    <h2>Katalog Unit Digicam</h2>
+                    <!-- Loading Indicator muncul di sini -->
+                    <p id="table-counter">Memuat data...</p>
+                </div>
+                <div class="toolbar">
+                    <button type="button" id="btn-reload" class="btn-reload">
+                        <span>🔄</span> Refresh
+                    </button>
+                    <input type="text" id="search-input" class="search-input" placeholder="Cari tipe kamera...">
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table id="tabel-digicam">
+                    <thead>
+                        <tr>
+                            <th style="padding-left: 1.5rem;">Nama Kamera</th>
+                            <th>Kategori</th>
+                            <th>Tarif / Hari</th>
+                            <th>Stok Ready</th>
+                            <th>Kondisi</th>
+                            <th style="text-align: right; padding-right: 1.5rem;">Kelola</th>
+                        </tr>
+                    </thead>
+                    <!-- tbody kosong, diisi oleh JS -->
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 <strong>DIGIRENT</strong> &mdash; Fetch API & JSON Data</p>
+    </footer>
+
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/data-loader.js"></script>
+    <script>
+        function muatDaftarDigicam() {
+            loadGenerikData('../data/digicam.json', '#tabel-digicam', ['nama_kamera', 'kategori', 'tarif_per_hari', 'stok', 'kondisi'], 'digisewa_digicam');
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            muatDaftarDigicam();
+            document.getElementById("btn-reload")?.addEventListener("click", function() {
+                localStorage.removeItem('digisewa_digicam');
+                muatDaftarDigicam();
+            });
+        });
+    </script>
+</body>
+</html>

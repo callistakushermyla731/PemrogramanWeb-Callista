@@ -1,85 +1,93 @@
-# Rancangan Fitur (Wireframe & User Flow) - SIMPUS-Mini
+//Halaman Beranda
++-----------------------------------------------------------------------+
+|                              DIGIRENT                                 |  <- Baris 1: Brand Title (Pink)
+|    [Beranda] [Katalog Digicam] [Tambah Digicam] ... [Login]           |  <- Baris 2: Navigasi
++-----------------------------------------------------------------------+
+|                                                                       |
+|  +-----------------------------------------------------------------+  |
+|  | [Badge: Rental Kamera Y2K]                                      |  |
+|  |                                                                 |  |
+|  | Sewa Digicam Impian untuk Momen Spesialmu                       |  |  <- Hero Section (Card Putih)
+|  | Kelola stok unit kamera digital saku...                         |  |
+|  |                                                                 |  |
+|  | (Lihat Katalog)  (Tambah Unit)      +-------------------------+ |  |
+|  |                                     | 📢 Ketentuan Rental     | |  |  <- Notice Box (Pink Soft)
+|  |                                     | - Identitas KTP/KTM     | |  |
+|  |                                     +-------------------------+ |  |
+|  +-----------------------------------------------------------------+  |
+|                                                                       |
+|  +-------------------+   +-------------------+   +-----------------+  |
+|  | TOTAL UNIT KAMERA |   | PELANGGAN         |   | SEDANG DISEWA   |  |  <- Grid Statistik 3 Kolom
+|  | 6              📸 |   | 2              👥 |   | 2             ✨ |     (Border Pink Penuh)
+|  +-------------------+   +-------------------+   +-----------------+  |
+|                                                                       |
++-----------------------------------------------------------------------+
+|               © 2026 DIGIRENT — System Management                     |  <- Footer
++-----------------------------------------------------------------------+
 
-Dokumen ini berisi rancangan alur pengguna (*user flow*) dan tata letak (*wireframe*) berbasis teks untuk fitur-fitur yang akan dikembangkan pada bab selanjutnya.
+//Halaman Katalog & Daftar
++-----------------------------------------------------------------------+
+|                              DIGIRENT                                 |
+|    [Beranda] [Katalog Digicam] [Tambah Digicam] ... [Login]           |
++-----------------------------------------------------------------------+
+|                                                                       |
+|  +-----------------------------------------------------------------+  |
+|  | Katalog Unit Digicam               [ 🔄 Refresh ] [ Cari... ]   |  <- Toolbar Table Header
+|  | Menampilkan 3 total data                                        |  |
+|  |-----------------------------------------------------------------|  |
+|  | NAMA KAMERA | KATEGORI | TARIF/HARI | STOK | KONDISI | KELOLA   |  |  <- Table Head
+|  |-------------+----------+------------+------+---------+---------|  |
+|  | Canon IXY   | CCD      | Rp 50.000  |  3   | Mulus   | (E) (H) |  |  <- Table Row (Dynamic)
+|  | Sony Cyber  | Compact  | Rp 65.000  |  2   | Baik    | (E) (H) |  |
+|  +-----------------------------------------------------------------+  |
+|                                                                       |
++-----------------------------------------------------------------------+
+|               © 2026 DIGIRENT — System Management                     |
++-----------------------------------------------------------------------+
 
----
+//Tampilan HP / Responsive Inspect Mode
++-----------------------+
+|       DIGIRENT     ☰  | <- Brand Title + Hamburger Menu Toggle
++-----------------------+
+|                       |
+|  +-----------------+  |
+|  |        🔑       |  |
+|  |   Masuk Admin   |  |
+|  |                 |  |
+|  | Username/Email  |  |
+|  | [_____________] |  |
+|  |                 |  |
+|  | Kata Sandi      |  |
+|  | [_____________] |  |
+|  |                 |  |
+|  | (==== Login ===)|  |
+|  +-----------------+  |
+|                       |
++-----------------------+
+|   © 2026 DIGIRENT     |
++-----------------------+
 
-## 1. Fitur Login
+//Halaman Login Admin
++-----------------------------------------------------------------------+
+|                              DIGIRENT                                 |
+|    [Beranda] [Katalog Digicam] [Tambah Digicam] ... [Login*]          | <- Navbar Header
++-----------------------------------------------------------------------+
+|                                                                       |
+|                  +----------------------------------+                 |
+|                  |                🔑                |                 | <- Ikon Kunci
+|                  |           Masuk Admin            |                 | <- Judul Form (Pink)
+|                  |  Silakan masuk ke panel manajemen |                 | <- Subtitle Grey
+|                  |                                  |                 |
+|                  | Username / Email                 |                 |
+|                  | [ admin@digirent.com__________ ] |                 | <- Input Text
+|                  |                                  |                 |
+|                  | Kata Sandi                       |                 |
+|                  | [ ••••••••____________________ ] |                 | <- Input Password
+|                  |                                  |                 |
+|                  | [============ Login ===========] |                 | <- Tombol Full Width (Pink)
+|                  +----------------------------------+                 |
+|                                                                       |
++-----------------------------------------------------------------------+
+|               © 2026 DIGIRENT — System Management                     | <- Footer
++-----------------------------------------------------------------------+
 
-### User Flow
-1. Pengguna membuka halaman Login.
-2. Pengguna memasukkan **Username** dan **Password**.
-3. Sistem memvalidasi akun:
-   - **Valid:** Masuk ke Dashboard Petugas.
-   - **Invalid:** Tampil pesan peringatan.
-
-### Wireframe Teks
-```text
-+-------------------------------------------------------+
-|                   SIMPUS-Mini                         |
-|                                                       |
-|                  +-----------------+                  |
-|                  |   LOGIN SYSTEM  |                  |
-|                  +-----------------+                  |
-|                  | Username:       |                  |
-|                  | [_____________] |                  |
-|                  | Password:       |                  |
-|                  | [_____________] |                  |
-|                  |                 |                  |
-|                  |  [ MASUK ]      |                  |
-|                  +-----------------+                  |
-|                                                       |
-+-------------------------------------------------------+
-
-+-------------------------------------------------------+
-| [SIMPUS-Mini]  Beranda  Buku  Anggota  Transaksi  [X] |
-+-------------------------------------------------------+
-|  Dashboard Petugas                                    |
-|                                                       |
-|  +--------------+  +--------------+  +--------------+ |
-|  | Total Buku   |  | Anggota      |  | Peminjaman   | |
-|  |     120      |  |     45       |  |      8       | |
-|  +--------------+  +--------------+  +--------------+ |
-|                                                       |
-|  Aksi Cepat:                                          |
-|  [ + Pinjam Buku ]    [ + Kembalikan Buku ]           |
-+-------------------------------------------------------+
-
-+-------------------------------------------------------+
-| [SIMPUS-Mini]  Beranda  Buku  Anggota  Transaksi  [X] |
-+-------------------------------------------------------+
-|  Form Transaksi Peminjaman                            |
-|  -------------------------                            |
-|  Pilih Anggota : [ Select Anggota          v ]        |
-|  Pilih Buku    : [ Select Buku             v ]        |
-|  Tgl Pinjam    : [ dd/mm/yyyy                ]        |
-|  Tgl Kembali   : [ dd/mm/yyyy                ]        |
-|                                                       |
-|  [ SIMPAN PEMINJAMAN ]                                |
-+-------------------------------------------------------+
-
-+-------------------------------------------------------+
-| [SIMPUS-Mini]  Beranda  Buku  Anggota  Transaksi  [X] |
-+-------------------------------------------------------+
-|  Form Pengembalian Buku                               |
-|  -------------------------                            |
-|  ID Transaksi  : [ TR-001                  ] [ CARI ] |
-|  Nama Anggota  : Siti Aminah                          |
-|  Judul Buku    : Laskar Pelangi                       |
-|  Status Denda  : Terlambat 1 Hari (Rp 2.000)          |
-|                                                       |
-|  [ KONFIRMASI PENGEMBALIAN ]                          |
-+-------------------------------------------------------+
-
-+-------------------------------------------------------+
-| [SIMPUS-Mini]  Beranda  Buku  Anggota  Transaksi  [X] |
-+-------------------------------------------------------+
-|  Riwayat Transaksi                                    |
-|                                                       |
-|  +----+----------+---------------+--------------+----+|
-|  | ID | Anggota  | Buku          | Tgl Kembali  |Stts||
-|  +----+----------+---------------+--------------+----+|
-|  | 01 | Siti A.  | Laskar Pelangi| 05/09/2026   |LNS ||
-|  | 02 | Budi S.  | Hujan         | 10/09/2026   |PJM ||
-|  +----+----------+---------------+--------------+----+|
-+-------------------------------------------------------+
