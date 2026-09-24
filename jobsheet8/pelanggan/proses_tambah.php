@@ -11,14 +11,22 @@ require_once "../includes/koneksi.php";
 
 if (isset($_GET["hapus"])) {
     $id = (int)$_GET["hapus"];
+    $data = baca_data('pelanggan');
+    $baru = [];
+    $ditemukan = false;
 
-    $stmt = $conn->prepare("DELETE FROM pelanggan WHERE id = ?");
-    $stmt->bind_param("i", $id);
+    foreach ($data as $row) {
+        if ((int)$row['id'] === $id) {
+            $ditemukan = true;
+            continue;
+        }
+        $baru[] = $row;
+    }
 
-    if ($stmt->execute()) {
+    if ($ditemukan && simpan_data('pelanggan', $baru)) {
         $_SESSION["pesan"] = "Data pelanggan berhasil dihapus.";
     } else {
-        $_SESSION["error"] = "Data pelanggan gagal dihapus.";
+        $_SESSION["error"] = "Data pelanggan tidak ditemukan atau gagal dihapus.";
     }
 
     header("Location: list.php");
@@ -31,13 +39,22 @@ if (isset($_POST["simpan"])) {
     $no_hp = trim($_POST["no_hp"] ?? "");
     $alamat = trim($_POST["alamat"] ?? "");
 
-    $stmt = $conn->prepare("
-        INSERT INTO pelanggan (nama, email, no_hp, alamat)
-        VALUES (?, ?, ?, ?)
-    ");
-    $stmt->bind_param("ssss", $nama, $email, $no_hp, $alamat);
+    if ($nama === '' || $email === '' || $no_hp === '' || $alamat === '') {
+        $_SESSION["error"] = "Semua data pelanggan wajib diisi.";
+        header("Location: tambah.php");
+        exit;
+    }
 
-    if ($stmt->execute()) {
+    $data = baca_data('pelanggan');
+    $data[] = [
+        'id' => id_baru($data),
+        'nama' => $nama,
+        'email' => $email,
+        'no_hp' => $no_hp,
+        'alamat' => $alamat
+    ];
+
+    if (simpan_data('pelanggan', $data)) {
         $_SESSION["pesan"] = "Data pelanggan berhasil ditambahkan.";
     } else {
         $_SESSION["error"] = "Data pelanggan gagal ditambahkan.";
@@ -54,14 +71,28 @@ if (isset($_POST["update"])) {
     $no_hp = trim($_POST["no_hp"] ?? "");
     $alamat = trim($_POST["alamat"] ?? "");
 
-    $stmt = $conn->prepare("
-        UPDATE pelanggan
-        SET nama = ?, email = ?, no_hp = ?, alamat = ?
-        WHERE id = ?
-    ");
-    $stmt->bind_param("ssssi", $nama, $email, $no_hp, $alamat, $id);
+    if ($id <= 0 || $nama === '' || $email === '' || $no_hp === '' || $alamat === '') {
+        $_SESSION["error"] = "Data pelanggan belum lengkap.";
+        header("Location: list.php");
+        exit;
+    }
 
-    if ($stmt->execute()) {
+    $data = baca_data('pelanggan');
+    $ditemukan = false;
+
+    foreach ($data as &$row) {
+        if ((int)$row['id'] === $id) {
+            $row['nama'] = $nama;
+            $row['email'] = $email;
+            $row['no_hp'] = $no_hp;
+            $row['alamat'] = $alamat;
+            $ditemukan = true;
+            break;
+        }
+    }
+    unset($row);
+
+    if ($ditemukan && simpan_data('pelanggan', $data)) {
         $_SESSION["pesan"] = "Data pelanggan berhasil diubah.";
     } else {
         $_SESSION["error"] = "Data pelanggan gagal diubah.";
@@ -73,3 +104,4 @@ if (isset($_POST["update"])) {
 
 header("Location: list.php");
 exit;
+?>

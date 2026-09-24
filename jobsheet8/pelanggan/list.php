@@ -2,14 +2,17 @@
 session_start();
 require_once "../includes/koneksi.php";
 
-$data = $conn->query("SELECT * FROM pelanggan ORDER BY id DESC");
+$data = baca_data('pelanggan');
+usort($data, function ($a, $b) {
+    return (int)$b['id'] <=> (int)$a['id'];
+});
 ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Pelanggan</title>
+    <title>Daftar Pelanggan - DIGIRENT</title>
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
@@ -29,11 +32,11 @@ $data = $conn->query("SELECT * FROM pelanggan ORDER BY id DESC");
     <div class="table-card">
         <div class="table-header">
             <div>
-                <h2>Data Pelanggan</h2>
-                <p>Daftar data pelanggan.</p>
+                <h2>Daftar Pelanggan</h2>
+                <p>Daftar pelanggan yang terdaftar di DIGIRENT.</p>
             </div>
             <?php if (isset($_SESSION["login"]) && $_SESSION["login"] === true): ?>
-                <a href="tambah.php" class="btn-pink">+ Tambah Data</a>
+                <a href="tambah.php" class="btn-pink">+ Tambah Pelanggan</a>
             <?php endif; ?>
         </div>
 
@@ -52,8 +55,8 @@ $data = $conn->query("SELECT * FROM pelanggan ORDER BY id DESC");
                     </tr>
                 </thead>
                 <tbody>
-                <?php if ($data->num_rows > 0): ?>
-                    <?php $no = 1; while ($row = $data->fetch_assoc()): ?>
+                <?php if (count($data) > 0): ?>
+                    <?php $no = 1; foreach ($data as $row): ?>
                         <tr>
                             <td><?= $no++ ?></td>
                             <td><?= htmlspecialchars($row["nama"]) ?></td>
@@ -62,14 +65,12 @@ $data = $conn->query("SELECT * FROM pelanggan ORDER BY id DESC");
                             <td><?= htmlspecialchars($row["alamat"]) ?></td>
                             <?php if (isset($_SESSION["login"]) && $_SESSION["login"] === true): ?>
                                 <td class="actions">
-                                    <a href="tambah.php?edit=<?= $row["id"] ?>" class="btn-action btn-edit">Edit</a>
-                                    <a href="proses_tambah.php?hapus=<?= $row["id"] ?>"
-                                       class="btn-action btn-delete"
-                                       onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>
+                                    <a href="tambah.php?edit=<?= (int)$row["id"] ?>" class="btn-action btn-edit">Edit</a>
+                                    <a href="proses_tambah.php?hapus=<?= (int)$row["id"] ?>" class="btn-action btn-delete" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>
                                 </td>
                             <?php endif; ?>
                         </tr>
-                    <?php endwhile; ?>
+                    <?php endforeach; ?>
                 <?php else: ?>
                     <tr><td colspan="6" class="empty-state">Belum ada data.</td></tr>
                 <?php endif; ?>

@@ -126,9 +126,9 @@ nav ul {
 
     align-items: center; 
 
-    gap: 0.5rem; 
+    gap: 0.35rem; 
 
-    flex-wrap: wrap; 
+    flex-wrap: nowrap; 
 
 } 
 
@@ -140,13 +140,15 @@ nav a {
 
     text-decoration: none; 
 
-    padding: 0.5rem 1.2rem; 
+    padding: 0.5rem 0.9rem; 
 
     border-radius: 50px; 
 
     font-size: 0.95rem; 
 
     transition: all 0.3s ease; 
+
+    white-space: nowrap; 
 
 } 
 
@@ -179,72 +181,116 @@ nav a.btn-login:hover {
 } 
 
 
+/* Navigasi utama dan area akun */
+.main-nav {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
 
-@media (max-width: 768px) { 
+.menu-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    flex-wrap: nowrap;
+    min-width: 0;
+}
 
-    .hamburger-btn { 
+.menu-links li {
+    flex-shrink: 0;
+}
 
-        display: block; 
+.auth-group {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    flex-shrink: 0;
+    margin-left: 0.5rem;
+}
 
-    } 
+.auth-group a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+}
 
+.auth-group .user-btn {
+    max-width: 245px;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
+.auth-group .logout-btn {
+    flex-shrink: 0;
+}
 
-    nav { 
+@media (max-width: 1100px) and (min-width: 769px) {
+    .main-nav {
+        gap: 0.4rem;
+    }
 
-        width: 100%; 
+    nav a {
+        padding-left: 0.6rem;
+        padding-right: 0.6rem;
+        font-size: 0.9rem;
+    }
 
-        display: none; 
+    .auth-group .user-btn {
+        max-width: 190px;
+    }
+}
 
-        margin-top: 1rem; 
+@media (max-width: 768px) {
 
-    } 
+    .hamburger-btn {
+        display: block;
+    }
 
+    nav.main-nav {
+        width: 100%;
+        display: none;
+        margin-top: 1rem;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
 
+    .menu-toggle:checked ~ nav.main-nav {
+        display: flex;
+    }
 
-    .menu-toggle:checked ~ nav { 
+    nav.main-nav .menu-links {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.5rem;
+    }
 
-        display: block; 
+    nav.main-nav .menu-links li {
+        width: 100%;
+        text-align: center;
+    }
 
-    } 
+    nav.main-nav .menu-links a {
+        display: block;
+        width: 100%;
+        padding: 0.7rem;
+    }
 
+    nav.main-nav .auth-group {
+        width: 100%;
+        justify-content: center;
+        margin-left: 0;
+        gap: 0.5rem;
+    }
 
-
-    nav ul { 
-
-        flex-direction: column; 
-
-        width: 100%; 
-
-        gap: 0.5rem; 
-
-    } 
-
-
-
-    nav ul li { 
-
-        width: 100%; 
-
-        text-align: center; 
-
-    } 
-
-
-
-    nav a { 
-
-        display: block; 
-
-        width: 100%; 
-
-        padding: 0.7rem; 
-
-    } 
-
-} 
-
-
+    nav.main-nav .auth-group .user-btn {
+        max-width: calc(100% - 90px);
+    }
+}
 
 /* Container Utama */ 
 
@@ -952,10 +998,15 @@ footer {
 
 
 @media (max-width: 768px) {
+    nav ul {
+        flex-wrap: nowrap;
+    }
+
     nav ul .auth-group {
         flex-direction: column;
         width: 100%;
         gap: 0.5rem;
+        margin-left: 0;
     }
 
     nav ul .auth-group a {
@@ -965,5 +1016,177 @@ footer {
 
     nav ul .auth-group .user-btn {
         max-width: none;
+    }
+}
+
+/* Search Bar */
+.search-form {
+    margin: 1rem 1.5rem 1.25rem;
+    padding: 0.85rem;
+    background: #f8f9fa;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.search-input-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+}
+
+.search-input-wrap input {
+    width: 100%;
+    height: 44px;
+    padding: 0.65rem 1rem 0.65rem 2.7rem;
+    border: 1px solid #d8d8d8;
+    border-radius: 9px;
+    outline: none;
+    font-size: 0.92rem;
+    background: #fff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.search-input-wrap input:focus {
+    border-color: #d63384;
+    box-shadow: 0 0 0 3px rgba(214, 51, 132, 0.08);
+}
+
+.search-icon {
+    position: absolute;
+    left: 0.95rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    font-size: 1.25rem;
+    line-height: 1;
+    pointer-events: none;
+}
+
+.search-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.search-actions .btn-pink,
+.search-actions .btn-outline {
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1.25rem;
+}
+
+.pagination {
+    margin: 1.25rem 1.5rem 1.5rem !important;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: center;
+    gap: 0.6rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.pagination span {
+    color: #666;
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+}
+
+@media (max-width: 600px) {
+    .search-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-actions {
+        width: 100%;
+    }
+
+    .search-actions .btn-pink,
+    .search-actions .btn-outline {
+        flex: 1;
+    }
+}
+
+
+/* Perapihan area akun setelah login */
+.navbar .user-menu,
+.navbar .nav-user,
+.navbar .account-menu,
+.navbar .login-user {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+.navbar .user-menu a,
+.navbar .nav-user a,
+.navbar .account-menu a,
+.navbar .login-user a {
+    white-space: nowrap;
+}
+
+.navbar .user-menu .user-email,
+.navbar .nav-user .user-email,
+.navbar .account-menu .user-email,
+.navbar .login-user .user-email {
+    display: inline-flex;
+    align-items: center;
+    max-width: 280px;
+    min-height: 38px;
+    padding: 0 16px;
+    border-radius: 20px;
+    background: #fff;
+    color: #d63384;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
+.navbar .user-menu .logout,
+.navbar .nav-user .logout,
+.navbar .account-menu .logout,
+.navbar .login-user .logout {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    padding: 0 17px;
+    border-radius: 20px;
+    background: #fff;
+    color: #d63384;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+    .navbar .user-menu .user-email,
+    .navbar .nav-user .user-email,
+    .navbar .account-menu .user-email,
+    .navbar .login-user .user-email {
+        max-width: 220px;
+    }
+}
+
+@media (max-width: 700px) {
+    .navbar .user-menu,
+    .navbar .nav-user,
+    .navbar .account-menu,
+    .navbar .login-user {
+        width: 100%;
+        justify-content: center;
+        margin-left: 0;
+        margin-top: 8px;
     }
 }

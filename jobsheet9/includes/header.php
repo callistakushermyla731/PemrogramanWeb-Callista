@@ -13,23 +13,27 @@ $base = in_array($folder, ['digicam', 'pelanggan', 'diagram']) ? '../' : '';
         <input type="checkbox" id="menu-toggle" class="menu-toggle">
         <label for="menu-toggle" class="hamburger-btn">☰</label>
 
-        <nav>
-            <ul>
+        <nav class="main-nav">
+            <ul class="menu-links">
                 <li><a href="<?= $base ?>index.php">Home</a></li>
                 <li><a href="<?= $base ?>digicam/list.php">Katalog Digicam</a></li>
                 <li><a href="<?= $base ?>digicam/tambah.php">Tambah Digicam</a></li>
                 <li><a href="<?= $base ?>pelanggan/list.php">Daftar Pelanggan</a></li>
                 <li><a href="<?= $base ?>pelanggan/tambah.php">Tambah Pelanggan</a></li>
-
-                <?php if (isset($_SESSION['login']) && $_SESSION['login'] === true): ?>
-                    <li class="auth-group">
-                        <a href="<?= $base ?>index.php" class="btn-login user-btn">Hallo <?= htmlspecialchars($_SESSION['email']) ?></a>
-                        <a href="<?= $base ?>logout.php" class="btn-login logout-btn">Logout</a>
-                    </li>
-                <?php else: ?>
-                    <li><a href="<?= $base ?>login.php" class="btn-login">Login</a></li>
-                <?php endif; ?>
             </ul>
+
+            <?php if (isset($_SESSION['login']) && $_SESSION['login'] === true): ?>
+                <div class="auth-group">
+                    <a href="<?= $base ?>index.php" class="btn-login user-btn">
+                        Hallo <?= htmlspecialchars($_SESSION['email']) ?>
+                    </a>
+                    <a href="<?= $base ?>logout.php" class="btn-login logout-btn">Logout</a>
+                </div>
+            <?php else: ?>
+                <div class="auth-group">
+                    <a href="<?= $base ?>login.php" class="btn-login">Login</a>
+                </div>
+            <?php endif; ?>
         </nav>
     </div>
 </header>

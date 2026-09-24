@@ -49,8 +49,8 @@ $jumlah_pelanggan = count(baca_data('pelanggan'));
         <div class="notice-box">
             <h3>Informasi Login</h3>
             <ul>
-                <li>📧 Username: admindigirent123@gmail.com</li>
-                <li>🔑 Password: 12345678</li>
+                <li>📧 Username: admindigirent123</li>
+                <li>🔑 Password: admindigirent123</li>
                 <li>📷 Kelola katalog digicam</li>
                 <li>👥 Kelola data pelanggan</li>
             </ul>
@@ -87,4 +87,3 @@ $jumlah_pelanggan = count(baca_data('pelanggan'));
 <?php include 'includes/footer.php'; ?>
 </body>
 </html>
-
