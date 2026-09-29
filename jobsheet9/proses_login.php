@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$username_benar = "admindigirent123";
+$username_benar = "admindigirent123@gmail.com";
 $password_benar = "12345678";
 
 $email = trim($_POST["email"] ?? "");

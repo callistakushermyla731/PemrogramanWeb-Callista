@@ -2,8 +2,8 @@
 session_start();
 require_once 'includes/koneksi.php';
 
-$jumlah_digicam = count(baca_data('digicam'));
-$jumlah_pelanggan = count(baca_data('pelanggan'));
+$jumlah_digicam = (int)$pdo->query('select count(*) from digicam')->fetchColumn();
+$jumlah_pelanggan = (int)$pdo->query('select count(*) from pelanggan')->fetchColumn();
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -49,8 +49,8 @@ $jumlah_pelanggan = count(baca_data('pelanggan'));
         <div class="notice-box">
             <h3>Informasi Login</h3>
             <ul>
-                <li>📧 Username: admindigirent123</li>
-                <li>🔑 Password: admindigirent123</li>
+                <li>📧 Username: admindigirent123@gmail.com</li>
+                <li>🔑 Password: 12345678</li>
                 <li>📷 Kelola katalog digicam</li>
                 <li>👥 Kelola data pelanggan</li>
             </ul>

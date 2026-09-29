@@ -34,7 +34,7 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] === true) {
             <form action="proses_login.php" method="post">
                 <div class="form-group">
                     <label for="email">Username</label>
-                    <input type="text" id="email" name="email"
+                    <input type="email" id="email" name="email"
                            placeholder="Masukkan username"
                            required>
                 </div>

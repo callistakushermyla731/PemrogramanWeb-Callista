@@ -1,121 +1,179 @@
 <?php
 /*
- * Penyimpanan data lokal - tidak membutuhkan XAMPP, MySQL, atau database server.
- * Data disimpan di folder data dalam format JSON.
+ * Koneksi PostgreSQL DIGIRENT
+ * Bisa digunakan untuk PostgreSQL lokal maupun Supabase/Render.
  */
 
-$data_dir = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'data';
+// Ambil konfigurasi dari Environment Variable.
+// Kalau dijalankan lokal, gunakan nilai default.
+$host = getenv('DB_HOST') ?: 'localhost';
+$port = getenv('DB_PORT') ?: '5432';
+$dbname = getenv('DB_NAME') ?: 'digirent';
+$user = getenv('DB_USER') ?: 'postgres';
+$password = getenv('DB_PASSWORD') ?: 'postgres';
+$sslmode = getenv('DB_SSLMODE') ?: '';
 
-if (!is_dir($data_dir)) {
-    mkdir($data_dir, 0777, true);
-}
+function buat_pdo(
+    string $host,
+    string $port,
+    string $dbname,
+    string $user,
+    string $password,
+    string $sslmode = ''
+): PDO {
+    $dsn = "pgsql:host={$host};port={$port};dbname={$dbname}";
 
-function file_data_path($nama_file) {
-    global $data_dir;
-    return $data_dir . DIRECTORY_SEPARATOR . $nama_file . '.json';
-}
-
-function baca_data($nama_file, $data_awal = []) {
-    $path = file_data_path($nama_file);
-
-    if (!file_exists($path)) {
-        simpan_data($nama_file, $data_awal);
-        return $data_awal;
+    if ($sslmode !== '') {
+        $dsn .= ";sslmode={$sslmode}";
     }
 
-    $isi = file_get_contents($path);
-    $data = json_decode($isi, true);
-
-    return is_array($data) ? $data : $data_awal;
+    return new PDO(
+        $dsn,
+        $user,
+        $password,
+        [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            PDO::ATTR_EMULATE_PREPARES => false
+        ]
+    );
 }
 
-function simpan_data($nama_file, $data) {
-    $path = file_data_path($nama_file);
-    $hasil = file_put_contents(
-        $path,
-        json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE),
-        LOCK_EX
+try {
+    // Langsung koneksi ke database.
+    // Tidak membuat database baru karena Supabase sudah menyediakan database "postgres".
+    $pdo = buat_pdo(
+        $host,
+        $port,
+        $dbname,
+        $user,
+        $password,
+        $sslmode
     );
 
-    return $hasil !== false;
-}
+    // Buat tabel otomatis jika belum ada.
+    $pdo->exec('
+        create table if not exists digicam (
+            id serial primary key,
+            nama varchar(150) not null,
+            merek varchar(100) not null,
+            tipe varchar(100) not null,
+            harga_sewa integer not null check (harga_sewa >= 0),
+            stok integer not null check (stok >= 0)
+        );
 
-function cari_data($nama_file, $id) {
-    $data = baca_data($nama_file);
+        create table if not exists pelanggan (
+            id serial primary key,
+            nama varchar(150) not null,
+            email varchar(150) not null,
+            no_hp varchar(30) not null,
+            alamat text not null
+        );
+    ');
 
-    foreach ($data as $row) {
-        if ((int)$row['id'] === (int)$id) {
-            return $row;
+    // Isi data awal hanya jika tabel masih kosong.
+    if ((int)$pdo->query('select count(*) from digicam')->fetchColumn() === 0) {
+
+        $stmt = $pdo->prepare(
+            'insert into digicam
+            (nama, merek, tipe, harga_sewa, stok)
+            values (:nama, :merek, :tipe, :harga, :stok)'
+        );
+
+        $data = [
+            ['Canon IXUS 185', 'Canon', 'Compact Camera', 75000, 3],
+            ['Sony Cyber-shot DSC-W830', 'Sony', 'Compact Camera', 80000, 2],
+            ['Fujifilm FinePix JX500', 'Fujifilm', 'Compact Camera', 70000, 4],
+        ];
+
+        foreach ($data as $row) {
+            $stmt->execute([
+                'nama' => $row[0],
+                'merek' => $row[1],
+                'tipe' => $row[2],
+                'harga' => $row[3],
+                'stok' => $row[4]
+            ]);
         }
     }
 
-    return null;
-}
+    if ((int)$pdo->query('select count(*) from pelanggan')->fetchColumn() === 0) {
 
-function id_baru($data) {
-    if (empty($data)) {
-        return 1;
+        $stmt = $pdo->prepare(
+            'insert into pelanggan
+            (nama, email, no_hp, alamat)
+            values (:nama, :email, :no_hp, :alamat)'
+        );
+
+        $data = [
+            ['Callista', 'callista@gmail.com', '081234567890', 'Malang'],
+            ['Dimas', 'dimas@gmail.com', '082345678901', 'Blitar'],
+        ];
+
+        foreach ($data as $row) {
+            $stmt->execute([
+                'nama' => $row[0],
+                'email' => $row[1],
+                'no_hp' => $row[2],
+                'alamat' => $row[3]
+            ]);
+        }
     }
 
-    $ids = array_column($data, 'id');
-    return max(array_map('intval', $ids)) + 1;
+} catch (PDOException $e) {
+
+    http_response_code(500);
+
+    die(
+        '<!DOCTYPE html>
+        <html lang="id">
+        <head>
+            <meta charset="UTF-8">
+            <title>DIGIRENT</title>
+            <style>
+                body {
+                    font-family: Arial;
+                    background: #fff5f8;
+                    padding: 40px;
+                    color: #333;
+                }
+
+                .box {
+                    max-width: 760px;
+                    margin: auto;
+                    background: #fff;
+                    padding: 30px;
+                    border-radius: 18px;
+                    box-shadow: 0 8px 30px #0001;
+                }
+
+                h2 {
+                    color: #d63384;
+                }
+
+                code {
+                    background: #f2f2f2;
+                    padding: 3px 7px;
+                    border-radius: 5px;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="box">
+                <h2>DIGIRENT belum terhubung ke PostgreSQL</h2>
+
+                <p>
+                    Server PHP sudah berjalan,
+                    tetapi PostgreSQL belum dapat diakses.
+                </p>
+
+                <p>
+                    Periksa kembali Environment Variables
+                    pada server.
+                </p>
+            </div>
+        </body>
+        </html>'
+    );
 }
-
-// Data awal dibuat otomatis saat pertama kali halaman dibuka.
-baca_data('digicam', [
-    [
-        'id' => 1,
-        'nama' => 'Canon IXUS 185',
-        'merek' => 'Canon',
-        'tipe' => 'Compact Camera',
-        'harga_sewa' => 75000,
-        'stok' => 3
-    ],
-    [
-        'id' => 2,
-        'nama' => 'Sony Cyber-shot DSC-W830',
-        'merek' => 'Sony',
-        'tipe' => 'Compact Camera',
-        'harga_sewa' => 80000,
-        'stok' => 2
-    ],
-    [
-        'id' => 3,
-        'nama' => 'Fujifilm FinePix JX500',
-        'merek' => 'Fujifilm',
-        'tipe' => 'Compact Camera',
-        'harga_sewa' => 70000,
-        'stok' => 4
-    ]
-]);
-
-baca_data('pelanggan', [
-    [
-        'id' => 1,
-        'nama' => 'Callista',
-        'email' => 'callista@gmail.com',
-        'no_hp' => '081234567890',
-        'alamat' => 'Malang'
-    ],
-    [
-        'id' => 2,
-        'nama' => 'Dimas',
-        'email' => 'dimas@gmail.com',
-        'no_hp' => '082345678901',
-        'alamat' => 'Blitar'
-    ]
-]);
-
-baca_data('diagram', [
-    [
-        'id' => 1,
-        'nama' => 'Diagram Data Pelanggan',
-        'keterangan' => 'Menampilkan data pelanggan yang tersimpan.'
-    ],
-    [
-        'id' => 2,
-        'nama' => 'Diagram Penjualan',
-        'keterangan' => 'Menampilkan informasi penjualan.'
-    ]
-]);
 ?>
