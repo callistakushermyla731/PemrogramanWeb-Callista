@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>DIGIRENT | Tambah Digicam</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>DIGIRENT</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Beranda</a></li>
+                <li><a href="list.html">Katalog Digicam</a></li>
+                <li><a href="tambah.html">Tambah Digicam</a></li>
+                <li><a href="../pelanggan/list.html">Daftar Pelanggan</a></li>
+                <li><a href="../pelanggan/tambah.html">Tambah Pelanggan</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Tambah Digicam</h2>
+            <form action="#" method="post">
+                <p>
+                    <label for="nama_kamera">Nama Kamera</label>
+                    <input type="text" id="nama_kamera" name="nama_kamera" required>
+                </p>
+                <p>
+                    <label for="kategori">Kategori</label>
+                    <input type="text" id="kategori_kamera" name="kategori_kamera" required>
+                </p>
+                <p>
+                    <label for="tarif">Tarif per Hari (Rp)</label>
+                    <input type="number" id="tarif" name="tarif" min="0" required>
+                </p>
+                <p>
+                    <label for="kondisi">Kondisi Kamera</label>
+                    <input type="text" id="kondisi" name="kondisi">
+                </p>
+                <p>
+                    <label for="stok">Stok Ready</label>
+                    <input type="number" id="stok" name="stok" min="0" required>
+                </p>
+                <p>
+                    <label for="kategori">Kategori</label>
+                    <select id="kategori" name="kategori">
+                        <option value="pocket">Pocket Digicam</option>
+                        <option value="y2k">Y2K Aesthetic</option>
+                        <option value="selfie">Selfie Digicam</option>
+                    </select>
+                </p>
+                <p>
+                    <button type="submit">Simpan</button>
+                </p>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 DIGIRENT &mdash; System Management Rental Digicam</p>
+    </footer>
+</body>
+</html>
