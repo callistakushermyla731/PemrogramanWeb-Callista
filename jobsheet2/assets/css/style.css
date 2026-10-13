@@ -7,13 +7,13 @@
 
 body {
     font-family: "Segoe UI", Arial, sans-serif;
-    color: #2b2b2b;
-    background-color: #fce4ec; /* Background soft pink */
+    color: #3d3040;
+    background-color: #fff4fa; /* Background soft pink */
     line-height: 1.5;
 }
 
 a {
-    color: #c2185b; /* Warna pink tema */
+    color: #b83280; /* Warna pink tema */
     text-decoration: none;
 }
 
@@ -23,7 +23,7 @@ a:hover {
 
 /* ===== Header & Navbar (Flexbox) ===== */
 header {
-    background-color: #d63384; /* Warna pink tema */
+    background-color: #d9469d; /* Warna pink tema */
     color: #fff;
     padding: 1rem 1.5rem;
     display: flex;
@@ -64,7 +64,7 @@ section {
 
 section h2 {
     margin-bottom: 1rem;
-    color: #c2185b; /* Warna pink tema */
+    color: #b83280; /* Warna pink tema */
 }
 
 /* ===== Kartu Statistik (CSS Grid 4 Kolom) ===== */
@@ -75,7 +75,7 @@ section h2 {
 }
 
 .card-container article {
-    background-color: #f8bbd0;
+    background-color: #ffe0ef;
     border-radius: 8px;
     padding: 1.25rem;
     text-align: center;
@@ -90,7 +90,7 @@ section h2 {
 .card-container article p {
     font-size: 1.8rem;
     font-weight: 700;
-    color: #c2185b; /* Warna pink tema */
+    color: #b83280; /* Warna pink tema */
 }
 
 /* ===== Tabel ===== */
@@ -106,7 +106,7 @@ th, td {
 }
 
 thead {
-    background-color: #d63384; /* Warna pink tema */
+    background-color: #d9469d; /* Warna pink tema */
     color: #fff;
 }
 
@@ -115,7 +115,7 @@ tbody tr:nth-child(even) {
 }
 
 tbody tr:hover {
-    background-color: #f8bbd0;
+    background-color: #ffe0ef;
 }
 
 /* Styling Tombol Aksi menggunakan Class Khusus */
@@ -166,7 +166,7 @@ form textarea {
 }
 
 form button[type="submit"] {
-    background-color: #d63384; /* Warna pink tema */
+    background-color: #d9469d; /* Warna pink tema */
     color: #fff;
     border: none;
     padding: 0.6rem 1.5rem;
@@ -176,7 +176,7 @@ form button[type="submit"] {
 }
 
 form button[type="submit"]:hover {
-    background-color: #c2185b;
+    background-color: #b83280;
 }
 
 /* ===== Footer ===== */
